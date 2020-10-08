@@ -1,0 +1,74 @@
+.seccion-contacto {
+  a {
+    color: inherit;
+  }
+
+  .form-control {
+    border-radius: 10;
+  }
+  .form-control::placeholder {
+    text-transform: uppercase;
+    color: rgb(153, 153, 153);
+  }
+
+  button {
+    padding: 1rem 3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: $color-primario;
+    border-color: $color-primario;
+    &:hover {
+      background-color: $color-primario-light;
+      border-color: $color-primario;
+    }
+  }
+
+  &.academy {
+    background-color: $color-primario;
+    button {
+      background-color: $color-secundario;
+      &:hover {
+        background-color: $color-secundario-light;
+        border-color: $color-primario-light;
+      }
+    }
+  }
+}
+
+.social-icon-container {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  column-gap: 1rem;
+}
+
+.escribinos-container {
+  margin-bottom: 3rem;
+  margin-top: -3rem;
+  img {
+    max-width: 70%;
+  }
+
+  @media (max-width: $lg) {
+    img {
+      max-width: 95%;
+    }
+  }
+}
+
+.contacto-lista-container {
+  .header {
+    display: flex;
+    column-gap: 1rem;
+    align-items: baseline;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .contenido {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-weight: 300;
+    font-size: 1.3rem;
+  }
+}

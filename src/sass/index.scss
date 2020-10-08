@@ -1,0 +1,196 @@
+@import "_variables.scss";
+
+#index {
+  overflow: hidden;
+  .background {
+    position: absolute;
+    background-color: $color-primario;
+    z-index: -2;
+    min-width: 100vw;
+    min-height: 100vh;
+
+    .bg-img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      &.bg-decals {
+        background-image: url(../images/landing-page-decals.png);
+        background-size: cover;
+      }
+
+      &.bg-computer {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+
+        .svg {
+          width: 80%;
+          height: 80%;
+          display: flex;
+          align-items: flex-end;
+          @media screen and (max-width: $lg) {
+            width: 100%;
+            height: 75%;
+          }
+        }
+      }
+    }
+  }
+
+  .nav-container {
+    z-index: 10;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5rem;
+    @media screen and (orientation: portrait) {
+      flex-direction: column;
+      justify-content: stretch;
+      align-items: stretch;
+      padding: 0;
+      margin: 10;
+      -webkit-box-shadow: 0px 10px 23px -1px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 10px 23px -1px rgba(0, 0, 0, 0.75);
+      box-shadow: 0px 10px 23px -1px rgba(0, 0, 0, 0.75);
+    }
+
+    nav {
+      background-color: white;
+      height: 62vh;
+      width: 62vh;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      row-gap: 1rem;
+      //   padding-bottom: 7%;
+      align-items: center;
+      justify-content: center;
+      -webkit-box-shadow: 0px 10px 62px 10px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 10px 62px 10px rgba(0, 0, 0, 0.75);
+      box-shadow: 0px 10px 62px 10px rgba(0, 0, 0, 0.75);
+      @media screen and (orientation: portrait) {
+        border-radius: 0;
+        margin: 0 !important;
+        padding: 1rem !important;
+        width: 100%;
+        height: 100%;
+        flex-direction: row;
+        column-gap: 2rem;
+        box-shadow: none;
+        border-bottom: 1px solid #3333;
+        background-color: rgba(255, 255, 255, 0.881);
+        img {
+          max-width: 50% !important;
+          margin: 0 !important;
+        }
+        button {
+          padding: 0.75rem 0.5rem !important;
+          font-size: 1.5vh !important;
+        }
+      }
+
+      @media screen and (max-width: $md) and (orientation: landscape) {
+        height: 16rem;
+        width: 16rem;
+        padding-bottom: 6vh;
+        button {
+          padding: 4% !important;
+          font-size: 1.5vh !important;
+        }
+        padding-right: 10px !important;
+        padding-left: 10px !important;
+
+        &.left {
+          img {
+            margin-left: 20px !important;
+          }
+        }
+      }
+
+      @media screen and (min-width: 1280px) and (orientation: landscape) {
+        height: 62vh;
+        width: 62vh;
+      }
+
+      @media screen and (min-width: 1440px) and (orientation: landscape) {
+        height: 65vh;
+        width: 65vh;
+      }
+
+      @media screen and (min-width: 1920px) and (orientation: landscape) {
+        height: 65vh;
+        width: 65vh;
+      }
+
+      @media screen and (min-width: 2000px) and (orientation: landscape) {
+        height: 62vh;
+        width: 62vh;
+      }
+
+      @media screen and (min-width: 3000px) and (orientation: landscape) {
+        height: 62vh;
+        width: 62vh;
+      }
+
+      &.left {
+        margin-left: -10vh;
+        margin-top: -10vh;
+        padding-left: 2rem;
+        img {
+          max-width: 65%;
+          //   margin-left: 2.5rem;
+        }
+      }
+      &.right {
+        margin-right: -10vh;
+        margin-top: -10vh;
+        padding-right: 2rem;
+
+        img {
+          max-width: 70%;
+        }
+      }
+
+      button {
+        font-family: "Heebo";
+        font-weight: 900;
+        font-size: 1.8vh;
+        text-transform: uppercase;
+        padding: 2vh;
+        max-width: 60%;
+        border-radius: 0 0 40% 40%;
+        border: 1px solid $color-primario;
+        background-color: $color-primario;
+        color: white;
+        -webkit-box-shadow: 0px 10px 23px -1px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 10px 23px -1px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 10px 23px -1px rgba(0, 0, 0, 0.75);
+        &:hover {
+          background-color: $color-primario-light;
+        }
+        a {
+          color: white;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  .circle {
+    @media screen and (max-width: $md) and (orientation: portrait) {
+      min-width: 200vw;
+      left: -50vw;
+    }
+    min-width: 104vw;
+    height: 100vh;
+    background-color: $color-secundario;
+    position: fixed;
+    left: -2vw;
+    bottom: 7.5%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    z-index: -1;
+    object-fit: cover;
+  }
+}

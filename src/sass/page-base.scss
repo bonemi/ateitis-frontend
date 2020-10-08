@@ -1,0 +1,191 @@
+@import "_reset.scss";
+@import "_variables.scss";
+@import "_nav.scss";
+@import "_boton-modal.scss";
+@import "_parrafo.scss";
+@import "_titulo.scss";
+@import "_testimonio.scss";
+@import "_contacto.scss";
+@import "_curso.scss";
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 400;
+}
+h3 {
+  font-size: 1.5rem;
+}
+
+#servicios-page {
+  background-color: $color-primario;
+
+  .seccion-contacto {
+    background-color: $color-secundario;
+  }
+  .hvr-underline-from-center::before {
+    background-color: $color-secundario;
+  }
+  .academy-link {
+    background-color: #ee953726;
+    &:before {
+      background-color: $color-secundario;
+    }
+
+    @media screen and (max-width: $md) {
+      background-color: $color-secundario;
+    }
+  }
+  .logo-container .logo {
+    padding-top: 22%;
+  }
+}
+
+#academy-page {
+  background-color: $color-secundario;
+
+  .logo-container .logo {
+    padding-top: 25%;
+  }
+  .hvr-underline-from-center::before {
+    background-color: $color-primario;
+  }
+
+  .seccion-contacto {
+    background-color: $color-primario;
+  }
+
+  .servicios-link {
+    background-color: #ee953709;
+    &:before {
+      background-color: $color-primario;
+    }
+    @media screen and (max-width: $md) {
+      background-color: $color-primario;
+    }
+  }
+}
+
+#servicios-page,
+#academy-page {
+  @media (max-width: 797px) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  background-image: url("http://localhost:8000/static/landing-page-decals-def749d343b75621fd026df590c1cf4e.png");
+  background-size: contain;
+
+  .academy-link,
+  .servicios-link {
+    height: 15vw;
+    width: 18vw;
+    position: absolute;
+    // background-color: lightcoral;
+    right: 0;
+    top: 0;
+    border-radius: 50%;
+    margin-top: -5vw;
+    margin-right: 0.5rem;
+    -webkit-box-shadow: -2px 10px 20px -1px rgba(0, 0, 0, 0.55);
+    -moz-box-shadow: -2px 10px 20px -1px rgba(0, 0, 0, 0.55);
+    box-shadow: -2px 10px 20px -1px rgba(0, 0, 0, 0.55);
+    display: flex;
+    z-index: 10;
+    align-items: center;
+    text-decoration: none;
+
+    span {
+      margin-top: 15%;
+      font-size: calc(2px + 1vw);
+      text-align: center;
+      color: white;
+      padding: 0 15px;
+    }
+
+    @media screen and (max-width: $md) {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      padding: 0.25rem;
+      margin: 0;
+      border-radius: 0px;
+      display: flex;
+      justify-content: center;
+      justify-items: center;
+      align-items: center;
+      box-shadow: none;
+      span {
+        margin: 0;
+        padding: 0.5rem;
+        font-size: 14px;
+      }
+    }
+  }
+  .logo-container {
+    position: absolute;
+    width: 100%;
+    height: 40vw;
+    margin-top: -28vw;
+
+    @media screen and (max-width: $md) {
+      display: none;
+    }
+
+    .logo {
+      width: 45vw;
+      height: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: white;
+      border-radius: 50%;
+
+      @media screen and (min-width: 2500px) and (orientation: landscape) {
+        width: 38vw;
+        height: 100%;
+      }
+
+      @media screen and (min-width: 3500px) and (orientation: landscape) {
+        width: 35vw;
+        height: 100%;
+      }
+
+      @media screen and (max-width: $md) {
+        width: 100%;
+        border-radius: 0px;
+        padding: 0;
+        -webkit-box-shadow: -2px 6px 20px -1px rgba(0, 0, 0, 0.55);
+        -moz-box-shadow: -2px 6px 20px -1px rgba(0, 0, 0, 0.55);
+        box-shadow: -2px 6px 20px -1px rgba(0, 0, 0, 0.55);
+      }
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 50%;
+      }
+    }
+  }
+}
+
+.certificaciones {
+  border-radius: 10px;
+  box-shadow: 1px 8px 12px 0px rgba(0, 0, 0, 0.28);
+  -webkit-box-shadow: 1px 8px 12px 0px rgba(0, 0, 0, 0.28);
+  -moz-box-shadow: 1px 8px 12px 0px rgba(0, 0, 0, 0.28);
+}
+
+// Wordpress
+.alignright {
+  text-align: right;
+}
+.alignleft {
+  text-align: left;
+}
+.aligncenter {
+  text-align: center;
+}

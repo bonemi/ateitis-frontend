@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[3],{Q6DP:function(e,n,a){},cAY2:function(e,n,a){"use strict";a.r(n),a.d(n,"default",(function(){return r})),a.d(n,"pageQuery",(function(){return u}));a("Q6DP");var t=a("q1tI"),c=a.n(t);function r(e){var n=e.data;return c.a.createElement("div",{id:"academy"},c.a.createElement("h1",null,"ACADEMY PAGE"),c.a.createElement("p",null,n.wpPage.acfAcademy.descripcion))}var u="691636113"}}]);
+//# sourceMappingURL=component---src-pages-academy-jsx-905703e1c4fce44e8dc7.js.map
