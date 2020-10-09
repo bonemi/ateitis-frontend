@@ -67,6 +67,7 @@
   justify-content: center;
   align-items: center;
   column-gap: 2rem;
+  color: white;
 
   @media screen and (max-width: $sm) {
     row-gap: 1rem;
@@ -87,4 +88,91 @@
 
 .curso-selection {
   color: white;
+}
+
+.curso-details {
+  color: white;
+  margin-top: 2rem;
+
+  .btn img {
+    max-height: 20px;
+  }
+
+  .curso-image {
+    position: absolute;
+    right: 0;
+    top: -10rem;
+    z-index: 10;
+    @media screen and (max-width: $lg) {
+      position: relative;
+      top: 0;
+      right: 0;
+    }
+
+    .gatsby-image-wrapper {
+      width: 10rem;
+      height: 10rem;
+    }
+  }
+
+  .curso-details-title {
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+    row-gap: 1rem;
+    flex-direction: column;
+    text-align: center;
+    h3 {
+      max-width: 80%;
+    }
+    .category {
+      display: flex;
+      justify-content: center;
+      align-items: end;
+      column-gap: 1rem;
+      @media screen and (max-width: $sm) {
+        row-gap: 1rem;
+        flex-direction: column;
+        align-items: center;
+        h2 {
+          text-align: center;
+        }
+      }
+    }
+
+    h2 {
+      margin: 0;
+    }
+    .gatsby-image-wrapper {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  .curso-detail-section {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    .title {
+      display: flex;
+      column-gap: 1rem;
+      background-color: $color-primario;
+      padding: 0.35rem 1rem;
+      align-items: center;
+      font-size: 1.15rem;
+      line-height: 1.3rem;
+      text-transform: uppercase;
+      img {
+        height: 20px;
+        width: 20px;
+      }
+    }
+    .body {
+      background-color: white;
+      color: $color-oscuro;
+      padding: 1rem;
+      font-weight: 300;
+      flex-grow: 1;
+    }
+  }
 }

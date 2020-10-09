@@ -1,7 +1,7 @@
 //https://github.com/gatsbyjs/gatsby/issues/22880
-require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV || 'development'}`
-})
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV || "development"}`,
+});
 
 module.exports = {
   siteMetadata: {
@@ -13,10 +13,8 @@ module.exports = {
     {
       resolve: "gatsby-plugin-apollo",
       options: {
-        uri: `${process.env.GATSBY_WORDPRESS_SITE_URL}/graphql`, 
+        uri: `${process.env.GATSBY_WORDPRESS_SITE_URL}/graphql`,
         //uri: `https://ateitis.shopweb.com.ar/graphql`,
-        
-        
       },
     },
     /*
@@ -58,7 +56,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-sass`,

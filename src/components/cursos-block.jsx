@@ -44,7 +44,12 @@ export default function CursosBlock() {
 
 const pageQuery = graphql`
   query CursosBlock {
-    allWpProductCategory(filter: { name: { ne: "Sin categorizar" } }) {
+    allWpProductCategory(
+      filter: {
+        name: { ne: "Sin categorizar" }
+        products: { nodes: { elemMatch: { status: { eq: "publish" } } } }
+      }
+    ) {
       edges {
         node {
           id
@@ -66,6 +71,7 @@ const pageQuery = graphql`
             nodes {
               id
               name
+              slug
               image {
                 id
                 sourceUrl

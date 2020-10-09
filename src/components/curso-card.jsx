@@ -31,6 +31,8 @@ export default function CursoCard({ curso }) {
     precio,
   } = curso.acfCursos;
 
+  const { slug } = curso;
+
   let fechaDeInicioFormatted = dayjs(fechaDeInicio).format(
     "[Inicia el] DD [de] MMMM [de] YYYY"
   );
@@ -81,7 +83,7 @@ export default function CursoCard({ curso }) {
       </div>
       <Row className="cta">
         <Col sm={12} lg={6} className="mb-2">
-          <a href="#" className="btn btn-primary">
+          <a href={`/academy/${slug}`} className="btn btn-primary">
             VER MÁS
           </a>
         </Col>

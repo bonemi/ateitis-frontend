@@ -182,10 +182,13 @@ h3 {
 // Wordpress
 .alignright {
   text-align: right;
+  margin-left: auto;
 }
 .alignleft {
   text-align: left;
+  margin-right: auto;
 }
 .aligncenter {
   text-align: center;
+  margin: auto;
 }

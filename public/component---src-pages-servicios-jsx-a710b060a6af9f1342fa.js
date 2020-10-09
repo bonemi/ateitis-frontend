@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{"1iga":function(n,e,t){"use strict";t.r(e);t("vyxa");var a=t("q1tI"),i=t.n(a);e.default=function(){return i.a.createElement("div",{id:"servicios"},i.a.createElement("h1",null,"SERVICIOS PAGE"))}},vyxa:function(n,e,t){}}]);
-//# sourceMappingURL=component---src-pages-servicios-jsx-a710b060a6af9f1342fa.js.map
