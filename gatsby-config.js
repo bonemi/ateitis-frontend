@@ -11,6 +11,13 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: "gatsby-plugin-google-tagmanager",
+      options: {
+        id: "GTM-KBNPL45",
+        includeInDevelopment: false,
+      },
+    },
+    {
       resolve: "gatsby-plugin-apollo",
       options: {
         uri: `${process.env.GATSBY_WORDPRESS_SITE_URL}/graphql`,
