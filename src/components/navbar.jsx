@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Nav, Navbar, Row } from "react-bootstrap";
+import queryString from "query-string";
 import logoAteitis from "../images/logo-ateitis-centered.png";
 import logoAcademy from "../images/logo-ateitis-academy-centered.png";
 

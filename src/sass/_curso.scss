@@ -19,6 +19,7 @@
     background-color: $color-primario;
     border-radius: 1rem;
     align-items: center;
+    column-gap: 1rem;
 
     .gatsby-image-wrapper {
       width: 100%;
@@ -46,17 +47,6 @@
       img {
         width: 32px;
         height: 32px;
-      }
-    }
-  }
-
-  .cta {
-    a {
-      padding: 0.75rem 0.5rem;
-      width: 100%;
-      img {
-        margin-left: 1rem;
-        max-height: 1.5rem;
       }
     }
   }
@@ -128,7 +118,7 @@
     .category {
       display: flex;
       justify-content: center;
-      align-items: end;
+      align-items: flex-end;
       column-gap: 1rem;
       @media screen and (max-width: $sm) {
         row-gap: 1rem;

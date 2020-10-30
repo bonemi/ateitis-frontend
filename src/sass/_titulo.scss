@@ -1,34 +1,36 @@
 .titulo {
   display: flex;
   color: white;
-  font-size: 2.25rem;
+  font-size: 2.5rem;
   font-weight: 450;
   align-items: baseline;
   justify-items: center;
   text-transform: uppercase;
   margin: 2rem 0;
   @media screen and (max-width: $sm) {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    text-align: center;
+    justify-content: center;
   }
 
   .inicial {
     flex-shrink: 0;
-    margin-right: 0.5rem;
+    margin-right: 0.25rem;
     font-size: 3.3rem;
 
     background-color: white;
     color: $color-secundario;
     border-radius: 50%;
-    width: 5rem;
-    height: 5rem;
+    width: 4.5rem;
+    height: 4.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     @media screen and (max-width: $sm) {
       font-size: 2.5rem;
-      width: 5rem;
-      height: 5rem;
+      width: 3.5rem;
+      height: 3.5rem;
     }
 
     #academy-page & {

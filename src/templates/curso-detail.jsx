@@ -1,28 +1,31 @@
-// import "../sass/academy.scss";
-//to make graphql queries
 import { graphql } from "gatsby";
-import React from "react";
+import Img from "gatsby-image";
+import React, { useContext } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { BooleanParam, useQueryParam } from "use-query-params";
+import AddToCartButton from "../components/add-to-cart-button";
+import Carrito from "../components/carrito";
 import ContactoBlock from "../components/contacto-block";
+import { AppContext } from "../components/context/AppContext";
+import CursoDetailSection from "../components/curso-detail-section";
 import NavbarMenu from "../components/navbar";
 import SEO from "../components/seo";
 import SocialBlock from "../components/social-block";
-import escribinosImg from "../images/escribinos-academy.png";
-import logo from "../images/logo-ateitis-academy.png";
-import Img from "gatsby-image";
-
-import cartImg from "../images/cart.png";
-import bulbImg from "../images/bulb-white.png";
 import clockImg from "../images/clock-white.png";
 import cogImg from "../images/cog-white.png";
-import tagImg from "../images/tag-white.png";
 import directionsImg from "../images/directions-white.png";
+import escribinosImg from "../images/escribinos-academy.png";
 import listImg from "../images/list-white.png";
-import CursoDetailSection from "../components/curso-detail-section";
+import logo from "../images/logo-ateitis-academy.png";
+import tagImg from "../images/tag-white.png";
 
 export default function CursoDetail({ data, pageContext }) {
+  const [showCarrito, setShowCarrito] = useQueryParam("carrito", BooleanParam);
+  const handleCloseCarrito = () => setShowCarrito(undefined);
+  const handleShowCarrito = () => setShowCarrito(true);
+  const [cart, setCart] = useContext(AppContext);
   const { slug } = pageContext;
-  const { id, name, description, image, price } = data.wpProduct;
+  const { id, productId, name, description, image, price } = data.wpProduct;
 
   const {
     fechaDeInicio,
@@ -112,16 +115,19 @@ export default function CursoDetail({ data, pageContext }) {
             <CursoDetailSection
               img={tagImg}
               title="Precio - Formas de Pago"
-              body={precioFormasDePago}
+              body={`<strong>Precio: </strong> ${price} <br/> <br/> ${precioFormasDePago}`}
             ></CursoDetailSection>
           </Col>
         </Row>
         <Row className="text-center my-4">
+          <Col className="d-none d-lg-flex"></Col>
           <Col>
-            <a href="#contacto" className="btn  btn-lg btn-dark mb-2 ">
-              AÑADIR AL <img src={cartImg}></img>
-            </a>
+            <AddToCartButton
+              product={data.wpProduct}
+              caption="AÑADIR AL"
+            ></AddToCartButton>
           </Col>
+          <Col className="d-none d-lg-flex"></Col>
         </Row>
       </Container>
       <Container fluid className="escribinos-container">
@@ -137,6 +143,13 @@ export default function CursoDetail({ data, pageContext }) {
           <SocialBlock></SocialBlock>
         </Row>
       </Container>
+      {showCarrito && (
+        <Carrito
+          show={showCarrito}
+          handleCloseCarrito={handleCloseCarrito}
+          handleShowCarrito={handleShowCarrito}
+        />
+      )}
     </div>
   );
 }
@@ -160,6 +173,7 @@ export const menuQuery = graphql`
     }
     wpProduct(slug: { eq: $slug }) {
       id
+      productId
       name
       description
       image {

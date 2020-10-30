@@ -49,12 +49,12 @@ export default function ClientesBlock() {
           </Col>
         ))}
       </Row> */}
-      <Container fluid className="mt-4 px-5">
+      <Container fluid className="mt-4 px-xl-5 mx-sm-2 mx-md-5">
         <Row>
           <Col>
             <Titulo
               id="clientes-satisfechos"
-              data="Clientes Satisfechos..."
+              data="Clientes Satisfechos"
               showInicial={false}
             ></Titulo>
           </Col>

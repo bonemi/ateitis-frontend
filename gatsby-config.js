@@ -10,20 +10,6 @@ module.exports = {
     author: `@ajboni @emilanoglucero`,
   },
   plugins: [
-    {
-      resolve: "gatsby-plugin-google-tagmanager",
-      options: {
-        id: "GTM-KBNPL45",
-        includeInDevelopment: false,
-      },
-    },
-    {
-      resolve: "gatsby-plugin-apollo",
-      options: {
-        uri: `${process.env.GATSBY_WORDPRESS_SITE_URL}/graphql`,
-        //uri: `https://ateitis.shopweb.com.ar/graphql`,
-      },
-    },
     /*
      * Gatsby's data processing layer begins with “source”
      * plugins. Here the site sources its data from WordPress.
@@ -37,6 +23,9 @@ module.exports = {
          * Example : 'https://www.example-site.com/graphql'
          */
         url: `${process.env.GATSBY_WORDPRESS_SITE_URL}/graphql`,
+        /*perPage: 5,
+        verboseOutput: true,
+        concurrentRequests: 4*/
       },
     },
     // highlight-end
@@ -66,7 +55,17 @@ module.exports = {
         icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: "gatsby-plugin-google-tagmanager",
+      options: {
+        id: "GTM-KBNPL45",
+        includeInDevelopment: false,
+      },
+    },
+
     `gatsby-plugin-sass`,
+    "gatsby-plugin-use-query-params",
+
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

@@ -70,8 +70,10 @@ const pageQuery = graphql`
           products {
             nodes {
               id
+              productId
               name
               slug
+              onSale
               image {
                 id
                 sourceUrl
@@ -84,6 +86,10 @@ const pageQuery = graphql`
                     }
                   }
                 }
+              }
+              ... on WpSimpleProduct {
+                id
+                price
               }
               acfCursos {
                 duracion

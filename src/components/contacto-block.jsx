@@ -5,7 +5,6 @@ import ContactoLista from "./contacto-lista";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
 
-
 export default function ContactoBlock({ action = "" }) {
   const gutter = 4;
   const data = useStaticQuery(contactosQuery);
@@ -33,7 +32,7 @@ export default function ContactoBlock({ action = "" }) {
     <Fragment>
       <Col lg={12}>
         <Container className="my-5 px-5" id="contacto">
-            <Form          
+          <Form
             className="px-md-5"
             id="form-contact"
             onSubmit={async event => {
@@ -49,7 +48,7 @@ export default function ContactoBlock({ action = "" }) {
                 },
               });
             }}
-          > 
+          >
             <Row>
               <Col sm={12} md={6} className={`mb-${gutter}`}>
                 <Form.Control
@@ -112,7 +111,7 @@ export default function ContactoBlock({ action = "" }) {
                   }}
                 />
               </Col>
-            </Row> 
+            </Row>
             <Form.Row className={`mb-${gutter}`}>
               <Col className="text-center">
                 <Button type="submit">ENVIAR</Button>
@@ -121,27 +120,25 @@ export default function ContactoBlock({ action = "" }) {
           </Form>
           <Row className={`mb-${gutter} px-md-5`}>
             <Col>
-            
               {loading && <Alert variant={"primary"}>Enviando...</Alert>}
               {error && (
                 <Alert variant={"danger"}>
                   Ocurrió un error, por favor intentá de nuevo...
                 </Alert>
               )}
-              {mutation_data && 
-              <Alert variant={"success"}>
-              <style type="text/css">
-              {`
+              {mutation_data && (
+                <Alert variant={"success"}>
+                  <style type="text/css">
+                    {`
                 #form-contact {
                   display: none;
                 }
               `}
-              </style>
-              
-              Enviado!
-              </Alert>
-
-              }
+                  </style>
+                  Gracias por comunicarte. Nos contactaremos dentro de las
+                  próximas 24 Horas.
+                </Alert>
+              )}
             </Col>
           </Row>
         </Container>

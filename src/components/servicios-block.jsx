@@ -42,7 +42,7 @@ export default function ServiciosBlock() {
         <Col>
           <Titulo
             id="certificaciones"
-            data="Nuestras certificaciones..."
+            data="Nuestras certificaciones"
             showInicial={false}
           ></Titulo>
         </Col>

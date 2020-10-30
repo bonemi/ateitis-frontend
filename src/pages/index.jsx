@@ -1,12 +1,9 @@
+import { graphql, Link } from "gatsby";
 import React from "react";
-import { Link } from "gatsby";
-
-import SEO from "../components/seo";
-import logo from "../images/logo-ateitis.png";
-import logoAcademy from "../images/logo-ateitis-academy.png";
-import { graphql } from "gatsby";
-
 import MainAnimation from "../components/main-animation.jsx";
+import SEO from "../components/seo";
+import logoAcademy from "../images/logo-ateitis-academy.png";
+import logo from "../images/logo-ateitis.png";
 
 export default function IndexPage({ data }) {
   /* Cargar los menues de wordpress, via grapqhl page query */
@@ -30,15 +27,11 @@ export default function IndexPage({ data }) {
       <div className="nav-container">
         <nav className="left">
           <img src={logo} alt="Ateitis Logo" />
-          <button>
-            <Link to={serviciosLink.url}>{serviciosLink.label}</Link> <br />
-          </button>
+          <Link to={serviciosLink.url}>{serviciosLink.label}</Link>
         </nav>
         <nav className="right">
           <img src={logoAcademy} alt="Ateitis AcademyLogo" />
-          <button>
-            <Link to={academyLink.url}>{academyLink.label}</Link>
-          </button>
+          <Link to={academyLink.url}>{academyLink.label}</Link>
         </nav>
       </div>
     </div>

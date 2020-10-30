@@ -1,15 +1,16 @@
-import React from "react";
-import { graphql, useStaticQuery } from "gatsby";
+import dayjs from "dayjs";
+import "dayjs/locale/es";
 import Img from "gatsby-image";
-import { Button, Col, Row } from "react-bootstrap";
-import cartImg from "../images/cart.png";
+import React from "react";
+import { Col, Row } from "react-bootstrap";
 import bulbImg from "../images/bulb.png";
 import calendarImg from "../images/calendar.png";
+import cartImg from "../images/cart.png";
 import clockImg from "../images/clock.png";
 import cogImg from "../images/cog.png";
 import tagImg from "../images/tag.png";
-import dayjs from "dayjs";
-import "dayjs/locale/es";
+import { convertHtmlToText } from "../utils/functions";
+import AddToCartButton from "./add-to-cart-button";
 
 var utc = require("dayjs/plugin/utc"); // dependent on utc plugin
 var timezone = require("dayjs/plugin/timezone");
@@ -28,10 +29,11 @@ export default function CursoCard({ curso }) {
     precioFormasDePago,
     profesor,
     temario,
-    precio,
   } = curso.acfCursos;
 
-  const { slug } = curso;
+  const { slug, price } = curso;
+
+  const formattedPrice = convertHtmlToText(price);
 
   let fechaDeInicioFormatted = dayjs(fechaDeInicio).format(
     "[Inicia el] DD [de] MMMM [de] YYYY"
@@ -74,10 +76,10 @@ export default function CursoCard({ curso }) {
           <img src={clockImg} alt="Duración" />
           <span>{duracion}</span>
         </div>
-        {precio && (
+        {price && (
           <div className="body-item">
             <img src={tagImg} alt="Precio" />
-            <span>----PRECIO----</span>
+            <span>{formattedPrice}</span>
           </div>
         )}
       </div>
@@ -88,10 +90,11 @@ export default function CursoCard({ curso }) {
           </a>
         </Col>
         <Col sm={12} lg={6} className="mb-2">
-          {precio ? (
-            <a href="#" className="btn btn-dark mb-2 ">
-              COMPRAR <img src={cartImg}></img>
-            </a>
+          {price ? (
+            <AddToCartButton
+              product={curso}
+              caption="COMPRAR"
+            ></AddToCartButton>
           ) : (
             <a href="#contacto" className="btn btn-dark mb-2 ">
               <span>

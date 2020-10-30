@@ -9,6 +9,7 @@ import ClientesBlock from "../components/clientes-block";
 import ContactoBlock from "../components/contacto-block";
 import SocialBlock from "../components/social-block";
 import SEO from "../components/seo";
+import StickyImg from "../images/landing-page-computer.png";
 
 export default function ServiciosPage({ data }) {
   return (
@@ -27,35 +28,44 @@ export default function ServiciosPage({ data }) {
       <NavbarMenu
         menu={data.allWpMenu.edges[0].node.menuItems.nodes}
       ></NavbarMenu>
-      <Container>
-        <Row>
-          <Col>
-            <NosotrosBlock></NosotrosBlock>
-          </Col>
-        </Row>
-      </Container>
-      <Container>
-        <Row>
-          <Col>
-            <ServiciosBlock></ServiciosBlock>
-          </Col>
-        </Row>
-      </Container>
 
-      <Container fluid>
-        <Row>
-          <ClientesBlock></ClientesBlock>
-        </Row>
-      </Container>
+      <div className="main-section-wrapper">
+        <div className="main-section">
+          <div className="sticky-sidebar">
+            <img src={StickyImg} alt="Sticky Image" />
+          </div>
 
-      <Container fluid className="seccion-contacto mt-4">
-        <Row>
-          <ContactoBlock></ContactoBlock>
-        </Row>
-        <Row className="py-3">
-          <SocialBlock></SocialBlock>
-        </Row>
-      </Container>
+          <Container>
+            <Row>
+              <Col>
+                <NosotrosBlock></NosotrosBlock>
+              </Col>
+            </Row>
+          </Container>
+          <Container>
+            <Row>
+              <Col>
+                <ServiciosBlock></ServiciosBlock>
+              </Col>
+            </Row>
+          </Container>
+          <Container></Container>
+        </div>
+        <Container fluid>
+          <Row>
+            <ClientesBlock></ClientesBlock>
+          </Row>
+        </Container>
+
+        <Container fluid className="seccion-contacto mt-4">
+          <Row>
+            <ContactoBlock></ContactoBlock>
+          </Row>
+          <Row className="py-3">
+            <SocialBlock></SocialBlock>
+          </Row>
+        </Container>
+      </div>
     </div>
   );
 }
