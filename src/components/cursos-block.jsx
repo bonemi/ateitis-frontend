@@ -31,9 +31,14 @@ export default function CursosBlock() {
                 <h2>{cat.node.name}</h2>
               </Col>
             </Row>
-            <Row className="px-0 px-md-4">
+            <Row className="px-0">
               {cat.node.products.nodes.map(prod => (
-                <Col key={prod.id} sm={12} lg={6} className="px-0 px-md-4 my-4">
+                <Col
+                  key={prod.id}
+                  sm={12}
+                  lg={6}
+                  className="px-0 px-md-2 px-lg-4 my-4"
+                >
                   <CursoCard curso={prod} key={prod.id}></CursoCard>
                 </Col>
               ))}

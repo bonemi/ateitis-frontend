@@ -120,7 +120,7 @@ h3 {
     padding-right: 0px;
   }
 
-  background-image: url("http://localhost:8000/static/landing-page-decals-def749d343b75621fd026df590c1cf4e.png");
+  //   background-image: url("http://localhost:8000/static/landing-page-decals-def749d343b75621fd026df590c1cf4e.png");
   background-size: contain;
 
   .academy-link,
@@ -292,9 +292,9 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  column-gap: 1rem;
+  column-gap: 0.75rem;
 
   img {
-    max-height: 1.5rem;
+    max-height: 1.4rem;
   }
 }

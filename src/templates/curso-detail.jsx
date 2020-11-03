@@ -2,7 +2,7 @@ import { graphql } from "gatsby";
 import Img from "gatsby-image";
 import React, { useContext } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { BooleanParam, useQueryParam } from "use-query-params";
+import { BooleanParam, NumberParam, useQueryParam } from "use-query-params";
 import AddToCartButton from "../components/add-to-cart-button";
 import Carrito from "../components/carrito";
 import ContactoBlock from "../components/contacto-block";
@@ -20,11 +20,17 @@ import logo from "../images/logo-ateitis-academy.png";
 import tagImg from "../images/tag-white.png";
 
 export default function CursoDetail({ data, pageContext }) {
+  const handleCloseCarrito = () => {
+    setShowCarrito(undefined);
+    setCartStep(undefined);
+  };
+  const handleShowCarrito = () => {
+    setShowCarrito(true);
+    setCartStep(1);
+  };
   const [showCarrito, setShowCarrito] = useQueryParam("carrito", BooleanParam);
-  const handleCloseCarrito = () => setShowCarrito(undefined);
-  const handleShowCarrito = () => setShowCarrito(true);
-  const [cart, setCart] = useContext(AppContext);
-  const { slug } = pageContext;
+  const [cartStep, setCartStep] = useQueryParam("step", NumberParam);
+
   const { id, productId, name, description, image, price } = data.wpProduct;
 
   const {
@@ -148,6 +154,8 @@ export default function CursoDetail({ data, pageContext }) {
           show={showCarrito}
           handleCloseCarrito={handleCloseCarrito}
           handleShowCarrito={handleShowCarrito}
+          setCartStep={setCartStep}
+          cartStep={cartStep}
         />
       )}
     </div>
