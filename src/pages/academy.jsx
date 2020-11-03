@@ -65,16 +65,12 @@ export default function AcademyPage({ data }) {
                 </Col>
               </Row>
             </Container>
-            <Container fluid className="escribinos-container">
-              <Row className="justify-content-end">
-                <img
-                  src={escribinosImg}
-                  alt="Escribinos"
-                  className="img-fluid"
-                />
-              </Row>
-            </Container>
           </div>
+          <Container fluid className="escribinos-container">
+            <Row className="justify-content-end">
+              <img src={escribinosImg} alt="Escribinos" className="img-fluid" />
+            </Row>
+          </Container>
         </div>
         <Container fluid className="seccion-contacto academy mt-4">
           <Row>

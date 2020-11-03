@@ -18,7 +18,7 @@ export default function CursosBlock() {
       </Row>
 
       <div className="curso-selection">
-        {categorias.map(cat => (
+        {categorias.reverse().map(cat => (
           <Container key={cat.node.id}>
             <Row>
               <Col className="my-5 curso-selection-category">
