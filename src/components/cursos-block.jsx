@@ -9,6 +9,9 @@ import Titulo from "./titulo";
 export default function CursosBlock() {
   const data = useStaticQuery(pageQuery);
   const categorias = data.allWpProductCategory.edges;
+  const sortedCategories = categorias.sort((a, b) =>
+    a.node.acfCategoria.orden > b.node.acfCategoria.orden ? 1 : -1
+  );
   return (
     <Fragment>
       <Row className="mb-4 mt-4 ">
@@ -18,7 +21,7 @@ export default function CursosBlock() {
       </Row>
 
       <div className="curso-selection">
-        {categorias.reverse().map(cat => (
+        {sortedCategories.map(cat => (
           <Container key={cat.node.id}>
             <Row>
               <Col className="my-5 curso-selection-category">
@@ -30,7 +33,7 @@ export default function CursosBlock() {
             </Row>
             <Row className="px-0 px-md-4">
               {cat.node.products.nodes.map(prod => (
-                <Col key={prod.id} sm={12} lg={6} className="px-0 px-xl-4 my-4">
+                <Col key={prod.id} sm={12} lg={6} className="px-0 px-md-4 my-4">
                   <CursoCard curso={prod} key={prod.id}></CursoCard>
                 </Col>
               ))}
@@ -54,6 +57,9 @@ const pageQuery = graphql`
         node {
           id
           name
+          acfCategoria {
+            orden
+          }
           image {
             id
             sourceUrl
