@@ -49,29 +49,33 @@ export default function AcademyPage({ data }) {
           <div className="sticky-sidebar">
             <img src={StickyImg} alt="Sticky Image" />
           </div>
+          <div className="main-section-content">
+            <Container>
+              <Row>
+                <Col>
+                  <AcademyBlock></AcademyBlock>
+                </Col>
+              </Row>
+            </Container>
 
-          <Container>
-            <Row>
-              <Col>
-                <AcademyBlock></AcademyBlock>
-              </Col>
-            </Row>
-          </Container>
-
-          <Container>
-            <Row className="mb-4 mt-4">
-              <Col>
-                <CursosBlock></CursosBlock>
-              </Col>
-            </Row>
-          </Container>
-          <Container fluid className="escribinos-container">
-            <Row className="justify-content-end">
-              <img src={escribinosImg} alt="Escribinos" className="img-fluid" />
-            </Row>
-          </Container>
+            <Container>
+              <Row className="mb-4 mt-4">
+                <Col>
+                  <CursosBlock></CursosBlock>
+                </Col>
+              </Row>
+            </Container>
+            <Container fluid className="escribinos-container">
+              <Row className="justify-content-end">
+                <img
+                  src={escribinosImg}
+                  alt="Escribinos"
+                  className="img-fluid"
+                />
+              </Row>
+            </Container>
+          </div>
         </div>
-
         <Container fluid className="seccion-contacto academy mt-4">
           <Row>
             <ContactoBlock></ContactoBlock>

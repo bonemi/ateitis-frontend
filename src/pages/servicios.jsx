@@ -34,22 +34,23 @@ export default function ServiciosPage({ data }) {
           <div className="sticky-sidebar">
             <img src={StickyImg} alt="Sticky Image" />
           </div>
-
-          <Container>
-            <Row>
-              <Col>
-                <NosotrosBlock></NosotrosBlock>
-              </Col>
-            </Row>
-          </Container>
-          <Container>
-            <Row>
-              <Col>
-                <ServiciosBlock></ServiciosBlock>
-              </Col>
-            </Row>
-          </Container>
-          <Container></Container>
+          <div className="main-section-content">
+            <Container>
+              <Row>
+                <Col>
+                  <NosotrosBlock></NosotrosBlock>
+                </Col>
+              </Row>
+            </Container>
+            <Container>
+              <Row>
+                <Col>
+                  <ServiciosBlock></ServiciosBlock>
+                </Col>
+              </Row>
+            </Container>
+            <Container></Container>
+          </div>
         </div>
         <Container fluid>
           <Row>

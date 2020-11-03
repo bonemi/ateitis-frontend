@@ -4,6 +4,7 @@ import BotonModal from "./boton-modal";
 import Titulo from "./titulo";
 import Parrafo from "./parrafo";
 import { Col, Container, Row } from "react-bootstrap";
+import cableImg from "../images/cable.png";
 
 export default function NosotrosBlock() {
   const data = useStaticQuery(pageQuery);
@@ -17,6 +18,9 @@ export default function NosotrosBlock() {
         {/* Contenido "estatico" (WP pages) */}
         <Col>
           <Titulo id="nosotros" data={contenido.title}></Titulo>
+          {/* <div className="cable">
+            <img src={cableImg} alt="Cable" />
+          </div> */}
         </Col>
       </Row>
       {contenido.acfNosotros.descripcion && (

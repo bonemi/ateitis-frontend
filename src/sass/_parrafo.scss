@@ -4,5 +4,10 @@
   padding-left: 2rem;
   font-weight: 200;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  @media screen and (max-width: $sm) {
+    border-left: none;
+    padding: 1rem;
+    font-size: 1.25rem;
+  }
 }

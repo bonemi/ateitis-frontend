@@ -26,12 +26,26 @@ h3 {
 }
 
 .main-section-wrapper {
-  @media screen and (min-width: 1601px) {
+  @media screen and (min-width: 1280px) {
     margin-top: -16vw;
   }
 }
+
+.main-section-content {
+  @media screen and (min-width: 1280px) {
+    margin: 0 16vw;
+  }
+}
+
+.cable {
+  position: absolute;
+  left: -1800px;
+  top: -277px;
+  z-index: 0;
+}
+
 .sticky-sidebar {
-  @media screen and (max-width: 1600px) {
+  @media screen and (max-width: 1279px) {
     display: none;
   }
   position: -webkit-sticky;
@@ -44,6 +58,7 @@ h3 {
   img {
     width: 10vw;
     opacity: 0.9;
+    max-width: 250px;
   }
 }
 .modal-body {

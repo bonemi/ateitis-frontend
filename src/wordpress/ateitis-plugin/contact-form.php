@@ -63,7 +63,7 @@ add_action('graphql_register_types', function () {
             ];
             
             // wp mail to notify via mail
-            $to = 'baj@mailbox.org';
+            $to = 'contacto@ateitiscorp.com';
             $subject = 'Nueva consulta en el sitio Ateitis de ' . $input["empresa"];
             $body = 'De: '. '<b>'.$input["empresa"].'</b>'. '<br><br>'. 'Nombre: '. '<b>'.$input["nombre"].'</b>'. '<br><br>'. 'E-mail: '.'<b>'.$input["email"].'</b>'. '<br><br>'. 'Whatsapp: '. '<b>'.$input["whatsapp"].'</b>'. '<br><br>'. '<b>'. 'Mensaje: '. '</b><br>'.    $input["mensaje"];
             $headers = array('Content-Type: text/html; charset=UTF-8');
