@@ -26,18 +26,8 @@ export default function PaymentMethods({ handleOnChange, moneda }) {
     payment => payment.node.id !== "woo-mercado-pago-basic"
   );
 
-  //   console.log(pesosPayments);
-  //   console.log(dolarPayments);
-  //   console.log(moneda);
-  //   console.log(data);
 
-  //check if pesos is the current currency
-  let monedaPesos;
-  if (moneda.value == "ARS") {
-    monedaPesos = true;
-  } else {
-    monedaPesos = false;
-  }
+  let monedaPesos = moneda.value === "ARS" ? true : false; 
 
   //if pesos is the currency set the right array to loop
   let paymentArray;

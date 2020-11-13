@@ -5,12 +5,15 @@ import SEO from "../components/seo";
 import logoAcademy from "../images/logo-ateitis-academy.png";
 import logo from "../images/logo-ateitis.png";
 
+import Img from "gatsby-image"
+
 export default function IndexPage({ data }) {
+  console.log(data)
   /* Cargar los menues de wordpress, via grapqhl page query */
-  const serviciosLink = data.allWpMenu.edges[0].node.menuItems.nodes.find(x =>
+  const serviciosLink = data.menu.edges[0].node.menuItems.nodes.find(x =>
     x.url.includes("servicios")
   );
-  const academyLink = data.allWpMenu.edges[0].node.menuItems.nodes.find(x =>
+  const academyLink = data.menu.edges[0].node.menuItems.nodes.find(x =>
     x.url.includes("academy")
   );
 
@@ -26,11 +29,21 @@ export default function IndexPage({ data }) {
       </div>
       <div className="nav-container">
         <nav className="left">
-          <img src={logo} alt="Ateitis Logo" />
+          <div className="imgWrapper">
+           <Img fluid={data.getLogoAteitis.childImageSharp.fluid} 
+            alt="Ateitis Logo" 
+            style={{height: "100%", width: "100%"}} 
+            />
+            </div>
           <Link to={serviciosLink.url}>{serviciosLink.label}</Link>
         </nav>
         <nav className="right">
-          <img src={logoAcademy} alt="Ateitis AcademyLogo" />
+          <div className="imgWrapper">
+            <Img fluid={data.getLogoAcademy.childImageSharp.fluid} 
+              alt="Ateitis Logo" 
+              style={{height: "100%", width: "100%"}} 
+              />
+          </div>
           <Link to={academyLink.url}>{academyLink.label}</Link>
         </nav>
       </div>
@@ -40,7 +53,7 @@ export default function IndexPage({ data }) {
 
 export const menuQuery = graphql`
   query {
-    allWpMenu(filter: { slug: { glob: "*landing-page*" } }) {
+    menu: allWpMenu(filter: { slug: { glob: "*landing-page*" } }) {
       edges {
         node {
           slug
@@ -51,6 +64,24 @@ export const menuQuery = graphql`
               url
             }
           }
+        }
+      }
+    }
+    getLogoAteitis: file(relativePath: { eq: "logo-ateitis.png" }) {
+      childImageSharp {
+        # Specify the image processing specifications right in the query.
+        # Makes it trivial to update as your page's design changes.
+        fluid {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    getLogoAcademy: file(relativePath: { eq: "logo-ateitis-academy.png" }) {
+      childImageSharp {
+        # Specify the image processing specifications right in the query.
+        # Makes it trivial to update as your page's design changes.
+        fluid {
+          ...GatsbyImageSharpFluid_withWebp
         }
       }
     }

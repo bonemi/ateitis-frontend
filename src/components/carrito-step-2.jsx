@@ -87,11 +87,11 @@ export function CarritoStep2({
    * @return {void}
    */
   const handleFormSubmit = event => {
-    console.log("handle form submit");
-    console.log(input);
+    //console.log("handle form submit");
+    //console.log(input);
     event.preventDefault();
     const result = validateAndSanitizeCheckoutForm(input);
-    console.log(result);
+    //console.log(result);
     if (!result.isValid) {
       setInput({ ...input, errors: result.errors });
 
@@ -334,37 +334,6 @@ export function CarritoStep2({
                       </Col>
                     </Row>
                   </div>
-                  {/*<Row className={`mb-${gutter_m}`}>
-                    <Col sm={12} md={12}>
-                      <Form.Check
-                        type="radio"
-                        label="TRANSFERENCIA"
-                        value="bacs"
-                        name="paymentMethod"
-                        id="formHorizontalRadios1"
-                        onChange={handleOnChange}
-                        className={`mb-${gutter}`}
-                      />
-                      <Form.Check
-                        type="radio"
-                        label="PAYPAL"
-                        value="paypal"
-                        name="paymentMethod"
-                        id="formHorizontalRadios2"
-                        onChange={handleOnChange}
-                        className={`mb-${gutter}`}
-                      />
-                      <Form.Check
-                        type="radio"
-                        label="PAGÁ CON TARJETAS DE CRÉDITO O DÉBITO"
-                        value="woo-mercado-pago-basic"
-                        name="paymentMethod"
-                        id="formHorizontalRadios3"
-                        onChange={handleOnChange}
-                        className={`mb-${gutter}`}
-                      />
-                    </Col>
-                  </Row>*/}
                   <Row className={`mb-${gutter_m}`}>
                     <Col sm={12} md={12}>
                       <PaymentMethods

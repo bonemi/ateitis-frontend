@@ -14,8 +14,11 @@
 .testimonio {
   display: flex;
   flex-direction: column;
-  row-gap: 25px;
+
   align-items: center;
+  & > div {
+    margin-bottom: 25px;
+  }
   @media (max-width: $lg) {
     padding: 15vw;
   }

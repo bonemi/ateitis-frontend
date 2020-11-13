@@ -30,6 +30,7 @@ export default function ServiciosPage({ data }) {
       ></NavbarMenu>
 
       <div className="main-section-wrapper">
+        {/* <div className="cable"></div> */}
         <div className="main-section">
           <div className="sticky-sidebar">
             <img src={StickyImg} alt="Sticky Image" />

@@ -8,8 +8,12 @@
   box-shadow: -2px 6px 20px -1px rgba(0, 0, 0, 0.75);
   display: flex;
   flex-direction: column;
-  row-gap: 1rem;
+  margin-bottom: 1rem;
   height: 100%;
+
+  & > *:not(:last-child) {
+    margin-bottom: 1rem;
+  }
 
   @media screen and (max-width: $sm) {
     padding: 1rem;
@@ -23,7 +27,9 @@
     background-color: $color-primario;
     border-radius: 1rem;
     align-items: center;
-    column-gap: 1rem;
+    & > *:not(:last-child) {
+      margin-right: 1rem;
+    }
 
     .gatsby-image-wrapper {
       width: 100%;
@@ -39,19 +45,27 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    row-gap: 1rem;
+    margin-bottom: 1rem;
     font-size: 1.25rem;
     margin-bottom: 2rem;
     margin-top: 2rem;
     .body-item {
       display: flex;
       flex-direction: row;
-      column-gap: 1.5rem;
+
       align-items: center;
       img {
         width: 32px;
         height: 32px;
       }
+
+      & > img {
+        margin-right: 1rem;
+      }
+    }
+
+    & > div {
+      margin-bottom: 1rem;
     }
   }
 }
@@ -60,11 +74,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  column-gap: 2rem;
+  & > *:not(:last-child) {
+    margin-right: 2rem;
+  }
   color: white;
 
   @media screen and (max-width: $sm) {
-    row-gap: 1rem;
+    & > *:not(:last-child) {
+      margin-bottom: 1rem;
+    }
     flex-direction: column;
     h2 {
       text-align: center;
@@ -113,7 +131,9 @@
     display: flex;
     justify-content: baseline;
     align-items: center;
-    row-gap: 1rem;
+    & > *:not(:last-child) {
+      margin-bottom: 1rem;
+    }
     flex-direction: column;
     text-align: center;
     h3 {
@@ -123,9 +143,13 @@
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      column-gap: 1rem;
+      & > *:not(:last-child) {
+        margin-right: 1rem;
+      }
       @media screen and (max-width: $sm) {
-        row-gap: 1rem;
+        & > *:not(:last-child) {
+          margin-bottom: 1rem;
+        }
         flex-direction: column;
         align-items: center;
         h2 {
@@ -149,7 +173,9 @@
     flex-grow: 1;
     .title {
       display: flex;
-      column-gap: 1rem;
+      & > *:not(:last-child) {
+        margin-right: 1rem;
+      }
       background-color: $color-primario;
       padding: 0.35rem 1rem;
       align-items: center;
