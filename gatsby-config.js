@@ -10,6 +10,15 @@ module.exports = {
     author: `@ajboni @emilanoglucero`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-i18n`,
+      options: {
+        langKeyDefault: "es",
+        langKeyForNull: "es",
+        prefixDefault: false,
+        useLangKeyLayout: false,
+      },
+    },
     /*
      * Gatsby's data processing layer begins with “source”
      * plugins. Here the site sources its data from WordPress.

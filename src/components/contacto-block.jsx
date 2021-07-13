@@ -4,17 +4,18 @@ import { Button, Col, Container, Form, Row, Alert } from "react-bootstrap";
 import ContactoLista from "./contacto-lista";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
+import t from "../utils/translations";
+import translations from "../utils/translations";
 
-export default function ContactoBlock({ action = "" }) {
+export default function ContactoBlock({ language, action = "" }) {
   const gutter = 4;
   const data = useStaticQuery(contactosQuery);
   const contactosTelefonicos = data.allWpPage.edges.filter(
     x => x.node.slug === "contactos-telefonicos"
   )[0].node;
 
-  const contactosMail = data.allWpPage.edges.filter(
-    x => x.node.slug === "contactos-mail"
-  )[0].node;
+  const contactosMail = data.allWpPage.edges.filter(x => x.node.slug === "contactos-mail")[0]
+    .node;
 
   //code to mutation graphql to wordpress
   const [empresaValue, setEmpresaValue] = useState("");
@@ -31,7 +32,7 @@ export default function ContactoBlock({ action = "" }) {
   return (
     <Fragment>
       <Col lg={12}>
-        <Container className="my-5 px-5" id="contacto">
+        <Container className="my-5 px-5" id={translations.contact[language].toLowerCase()}>
           <Form
             className="px-md-5"
             id="form-contact"
@@ -54,7 +55,7 @@ export default function ContactoBlock({ action = "" }) {
                 <Form.Control
                   required
                   type="text"
-                  placeholder="Empresa*"
+                  placeholder={t.contactForm.empresa[language]}
                   value={empresaValue}
                   onChange={event => {
                     setEmpresaValue(event.target.value);
@@ -65,7 +66,7 @@ export default function ContactoBlock({ action = "" }) {
                 <Form.Control
                   required
                   type="text"
-                  placeholder="Tu Nombre*"
+                  placeholder={t.contactForm.nombre[language]}
                   value={nombreValue}
                   onChange={event => {
                     setNombreValue(event.target.value);
@@ -104,7 +105,7 @@ export default function ContactoBlock({ action = "" }) {
                   type="text"
                   rows="6"
                   required
-                  placeholder="Tu Consulta*"
+                  placeholder={t.contactForm.consulta[language]}
                   value={mensajeValue}
                   onChange={event => {
                     setMensajeValue(event.target.value);
@@ -114,7 +115,7 @@ export default function ContactoBlock({ action = "" }) {
             </Row>
             <Form.Row className={`mb-${gutter}`}>
               <Col className="text-center">
-                <Button type="submit">ENVIAR</Button>
+                <Button type="submit">{t.contactForm.enviar[language]}</Button>
               </Col>
             </Form.Row>
           </Form>
@@ -135,8 +136,7 @@ export default function ContactoBlock({ action = "" }) {
                 }
               `}
                   </style>
-                  Gracias por comunicarte. Nos contactaremos dentro de las
-                  próximas 24 Horas.
+                  {t.contactForm.success[language]}
                 </Alert>
               )}
             </Col>
@@ -154,10 +154,7 @@ export default function ContactoBlock({ action = "" }) {
               ></ContactoLista>
             </Col>
             <Col sm={12} md={6}>
-              <ContactoLista
-                data={contactosMail}
-                nodeName="acfContactosMail"
-              ></ContactoLista>
+              <ContactoLista data={contactosMail} nodeName="acfContactosMail"></ContactoLista>
             </Col>
           </Row>
         </Container>

@@ -5,11 +5,15 @@ import InfiniteScroller from "./infiniteScroller";
 import Titulo from "./titulo";
 import TestimoniosBlock from "./testimonios-block";
 import escribinosImg from "../images/escribinos.png";
+// import escribinosImgEn from "../images/escribinosEn.png";
 
-export default function ClientesBlock() {
-  const data = useStaticQuery(pageQuery);
-  const clientesSatisfechos = data.allWpClientSatisfecho.edges;
-  const clientesImg = data.allWpPage.edges[0].node.acfClientes.imagen;
+import translations from "../utils/translations";
+import { toTitleCase } from "../utils/string-utils";
+
+export default function ClientesBlock({ language, data }) {
+  const pQuery = useStaticQuery(pageQuery);
+  const clientesSatisfechos = data.clientes.edges;
+  const clientesImg = pQuery.allWpPage.edges[0].node.acfClientes.imagen;
 
   return (
     <Fragment>
@@ -17,8 +21,8 @@ export default function ClientesBlock() {
         <Row>
           <Col>
             <Titulo
-              id="clientes"
-              data="Clientes"
+              id={translations.clients[language]}
+              data={translations.clients[language]}
               //   data={contenido.title}
             ></Titulo>
           </Col>
@@ -31,45 +35,21 @@ export default function ClientesBlock() {
         </Row>
       </Container>
 
-      {/* {contenido.acfServicios.descripcion && (
-        <Row className="mb-4 mt-4">
-          <Col>
-            <Parrafo data={contenido.acfServicios.descripcion}></Parrafo>
-          </Col>
-        </Row>
-      )} */}
-      {/* <Row className="mb-4 mt-4">
-        {data.allWpServiciosItem.edges.map(item => (
-          <Col md={4} key={item.node.id} className="mb-3 mt-3 ">
-            <BotonModal
-              data={item}
-              key={item.node.id}
-              nodeName="acfServiciosListado"
-            ></BotonModal>
-          </Col>
-        ))}
-      </Row> */}
       <Container fluid className="mt-4 px-xl-5 mx-sm-2 mx-md-5">
         <Row>
           <Col>
             <Titulo
               id="clientes-satisfechos"
-              data="Clientes Satisfechos"
+              data={translations.satisfiedClients[language]}
               showInicial={false}
             ></Titulo>
           </Col>
         </Row>
         <Row className="justify-content-around d-none d-lg-flex">
-          <TestimoniosBlock
-            data={clientesSatisfechos}
-            carousel={false}
-          ></TestimoniosBlock>
+          <TestimoniosBlock data={clientesSatisfechos} carousel={false}></TestimoniosBlock>
         </Row>
         <Row className="justify-content-around d-lg-none">
-          <TestimoniosBlock
-            data={clientesSatisfechos}
-            carousel={true}
-          ></TestimoniosBlock>
+          <TestimoniosBlock data={clientesSatisfechos} carousel={true}></TestimoniosBlock>
         </Row>
       </Container>
       <Container fluid className="escribinos-container">
@@ -101,31 +81,6 @@ const pageQuery = graphql`
                   }
                   fixed(height: 200) {
                     # Choose either the fragment including a small base64ed image, a traced placeholder SVG, or one without.
-                    ...GatsbyImageSharpFixed_noBase64
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    allWpClientSatisfecho {
-      edges {
-        node {
-          id
-          slug
-          title
-          acfClientesSatisfechos {
-            fieldGroupName
-            orden
-            puestoCliente
-            texto
-            fotoCliente {
-              id
-              localFile {
-                childImageSharp {
-                  fixed(width: 100) {
                     ...GatsbyImageSharpFixed_noBase64
                   }
                 }

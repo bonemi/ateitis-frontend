@@ -6,18 +6,22 @@ import Parrafo from "./parrafo";
 import { Col, Container, Row } from "react-bootstrap";
 import cableImg from "../images/cable.png";
 
-export default function NosotrosBlock() {
-  const data = useStaticQuery(pageQuery);
-  const contenido = data.allWpPage.edges[0].node;
+export default function NosotrosBlock({ data, language }) {
+  console.log(data);
+  const contenido = data.nosotrosPage.edges[0].node;
   data.allWpNosotrosItem.edges.sort((a, b) =>
     a.node.acfNosotrosListado.orden > b.node.acfNosotrosListado.orden ? 1 : -1
   );
+
   return (
     <Fragment>
       <Row className="my-5">
         {/* Contenido "estatico" (WP pages) */}
         <Col>
-          <Titulo id="nosotros" data={contenido.title}></Titulo>
+          <Titulo
+            id={language === "en" ? "aboutus" : "nosotros"}
+            data={contenido.title}
+          ></Titulo>
           {/* <div className="cable">
             <img src={cableImg} alt="Cable" />
           </div> */}
@@ -46,47 +50,3 @@ export default function NosotrosBlock() {
     </Fragment>
   );
 }
-
-const pageQuery = graphql`
-  query pageQuery {
-    allWpNosotrosItem {
-      edges {
-        node {
-          id
-          title
-          acfNosotrosListado {
-            color
-            subTitulo
-            orden
-            texto
-            icono {
-              sourceUrl
-              localFile {
-                id
-                childImageSharp {
-                  id
-                  fixed(width: 100) {
-                    # Choose either the fragment including a small base64ed image, a traced placeholder SVG, or one without.
-                    ...GatsbyImageSharpFixed_noBase64
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    allWpPage(filter: { slug: { glob: "*nosotros*" } }) {
-      edges {
-        node {
-          title
-          slug
-          acfNosotros {
-            descripcion
-            fieldGroupName
-          }
-        }
-      }
-    }
-  }
-`;

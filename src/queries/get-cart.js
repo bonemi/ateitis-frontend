@@ -7,6 +7,14 @@ const GET_CART = gql`
         nodes {
           key
           product {
+            acfCursos {
+              en {
+                tituloEn
+              }
+              es {
+                tituloEs
+              }
+            }
             id
             productId
             ... on SimpleProduct {

@@ -1,4 +1,7 @@
 .seccion-contacto {
+  small {
+    font-weight: 300;
+  }
   a {
     color: inherit;
   }
@@ -70,9 +73,16 @@
   }
   .contenido {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+
     justify-content: center;
     color: white;
     font-weight: 300;
     font-size: 1.3rem;
+    p {
+      margin: 0;
+      text-align: center;
+    }
   }
 }

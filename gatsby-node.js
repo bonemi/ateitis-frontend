@@ -1,26 +1,50 @@
 const path = require(`path`);
-exports.createPages = ({ graphql, actions }) => {
+const { toTitleCase } = require("./src/utils/string-utils");
+
+exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-  return graphql(`
+
+  const result = await graphql(`
     {
       allWpProduct(filter: { status: { eq: "publish" } }) {
         edges {
           node {
             id
             slug
+            acfCursos {
+              es {
+                slugEs
+              }
+              en {
+                slugEn
+              }
+            }
           }
         }
       }
     }
-  `).then(result => {
-    result.data.allWpProduct.edges.forEach(({ node }) => {
+  `);
+
+  result.data.allWpProduct.edges.forEach(({ node }) => {
+    const languages = ["es", "en"];
+
+    for (let language of languages) {
+      const slug = node.acfCursos[language]["slug" + toTitleCase(language)]
+        ? node.acfCursos[language]["slug" + toTitleCase(language)]
+        : node.slug;
+      const slugPrefix = language === "es" ? "" : `${language}/`;
+      const slugPath = `${slugPrefix}academy/${slug}`;
+
       createPage({
-        path: `academy/${node.slug}`,
+        path: slugPath,
         component: path.resolve(`./src/templates/curso-detail.jsx`),
         context: {
           slug: node.slug,
+          language: language,
+          localizedSlug: slug,
+          //   acfCursos: acfCursos,
         },
       });
-    });
+    }
   });
 };

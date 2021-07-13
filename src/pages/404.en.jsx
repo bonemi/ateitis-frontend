@@ -1,6 +1,8 @@
 import React from "react";
 
 export default function NotFound404() {
+  const language = "en";
+
   return (
     <div className="page-wrap d-flex flex-row align-items-center vh-100 vw-100">
       <div className="container">

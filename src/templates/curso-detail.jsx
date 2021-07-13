@@ -18,8 +18,14 @@ import escribinosImg from "../images/escribinos-academy.png";
 import listImg from "../images/list-white.png";
 import logo from "../images/logo-ateitis-academy.png";
 import tagImg from "../images/tag-white.png";
+import menu from "../utils/menu";
+import { toTitleCase } from "../utils/string-utils";
+import translations from "../utils/translations";
 
 export default function CursoDetail({ data, pageContext }) {
+  const { slug, language, localizedSlug, acfCursos } = pageContext;
+  console.log(pageContext);
+  console.log(data);
   const handleCloseCarrito = () => {
     setShowCarrito(undefined);
     setCartStep(undefined);
@@ -28,28 +34,40 @@ export default function CursoDetail({ data, pageContext }) {
     setShowCarrito(true);
     setCartStep(1);
   };
-  const [showCarrito, setShowCarrito] = useQueryParam("carrito", BooleanParam);
+  const [showCarrito, setShowCarrito] = useQueryParam(
+    translations.cart.cart[language],
+    BooleanParam
+  );
   const [cartStep, setCartStep] = useQueryParam("step", NumberParam);
 
   const { id, productId, name, description, image, price } = data.wpProduct;
 
-  const {
-    fechaDeInicio,
-    fechaHora,
-    metodologia,
-    orientacion,
-    precioFormasDePago,
-    profesor,
-    temario,
-  } = data.wpProduct.acfCursos;
+  const fechaDeInicio =
+    data.wpProduct.acfCursos[language]["fechaDeInicio" + toTitleCase(language)];
+  const fechaHora = data.wpProduct.acfCursos[language]["fechaHora" + toTitleCase(language)];
+  const metodologia =
+    data.wpProduct.acfCursos[language]["metodologia" + toTitleCase(language)];
+  const precioFormasDePago =
+    data.wpProduct.acfCursos[language]["precioFormasDePago" + toTitleCase(language)];
+  const profesor = data.wpProduct.acfCursos[language]["profesor" + toTitleCase(language)];
+  const temario = data.wpProduct.acfCursos[language]["temario" + toTitleCase(language)];
+  const descripcion =
+    data.wpProduct.acfCursos[language]["descripcion" + toTitleCase(language)];
+
+  const orientacion =
+    data.wpProduct.acfCursos[language]["orientacion" + toTitleCase(language)];
+
+  const titulo = data.wpProduct.acfCursos[language]["titulo" + toTitleCase(language)];
+
   const categoria = data.wpProduct.productCategories.nodes[0];
+  const serviciosLink = language === "en" ? "/en/services" : "/servicios";
 
   return (
     <div id="academy-page">
       <SEO title="Academy" />
 
-      <a className="servicios-link hvr-radial-out" href="/servicios">
-        <span>¿QUERÉS CONOCER NUESTROS SERVICIOS?</span>
+      <a className="servicios-link hvr-radial-out" href={serviciosLink}>
+        <span>{translations.knowOurServices[language]}</span>
       </a>
       <Row noGutters className="logo-container">
         <Col>
@@ -58,10 +76,7 @@ export default function CursoDetail({ data, pageContext }) {
           </div>
         </Col>
       </Row>
-      <NavbarMenu
-        menu={data.allWpMenu.edges[0].node.menuItems.nodes}
-        section="academy"
-      ></NavbarMenu>
+      <NavbarMenu language={language} section="academy"></NavbarMenu>
 
       <Container className="curso-details">
         <Row>
@@ -73,15 +88,12 @@ export default function CursoDetail({ data, pageContext }) {
                   imgStyle={{ objectFit: "contain" }}
                 ></Img>
               )}
-              <h2>{categoria.name}</h2>
+              <h2>{categoria.acfCategoria[language]}</h2>
             </div>
-            <h3>{name}</h3>
+            <h3>{titulo}</h3>
           </Col>
         </Row>
-        <Row
-          className="justify-content-center"
-          style={{ position: "relative" }}
-        >
+        <Row className="justify-content-center" style={{ position: "relative" }}>
           {image && (
             <div className="curso-image">
               <Img
@@ -93,35 +105,35 @@ export default function CursoDetail({ data, pageContext }) {
           <Col md={12} lg={6} className="d-flex flex-column">
             <CursoDetailSection
               img={cogImg}
-              title={name}
-              body={description}
+              title={titulo}
+              body={descripcion}
             ></CursoDetailSection>
             <CursoDetailSection
               img={listImg}
-              title="Temario"
+              title={translations.coursesDetail.topics[language]}
               body={temario}
             ></CursoDetailSection>
           </Col>
           <Col md={12} lg={6} className="d-flex flex-column">
             <CursoDetailSection
               img={cogImg}
-              title="Metodología"
+              title={translations.coursesDetail.methodology[language]}
               body={metodologia}
             ></CursoDetailSection>
             <CursoDetailSection
               img={clockImg}
-              title="Fecha - Horiario"
+              title={translations.coursesDetail.dateTime[language]}
               body={fechaHora}
             ></CursoDetailSection>
             <CursoDetailSection
               img={directionsImg}
-              title="Orientación"
+              title={translations.coursesDetail.orientation[language]}
               body={orientacion}
             ></CursoDetailSection>
             <CursoDetailSection
               img={tagImg}
-              title="Precio - Formas de Pago"
-              body={`<strong>Precio: </strong> ${price} <br/> <br/> ${precioFormasDePago}`}
+              title={translations.coursesDetail.priceAndPaymentMethod[language]}
+              body={`<strong>${translations.price[language]} </strong> ${price} <br/> <br/> ${precioFormasDePago}`}
             ></CursoDetailSection>
           </Col>
         </Row>
@@ -130,7 +142,8 @@ export default function CursoDetail({ data, pageContext }) {
           <Col>
             <AddToCartButton
               product={data.wpProduct}
-              caption="AÑADIR AL"
+              caption={translations.addToCart[language]}
+              language={language}
             ></AddToCartButton>
           </Col>
           <Col className="d-none d-lg-flex"></Col>
@@ -143,7 +156,7 @@ export default function CursoDetail({ data, pageContext }) {
       </Container>
       <Container fluid className="seccion-contacto academy mt-4">
         <Row>
-          <ContactoBlock></ContactoBlock>
+          <ContactoBlock language={language}></ContactoBlock>
         </Row>
         <Row className="py-3">
           <SocialBlock></SocialBlock>
@@ -156,6 +169,7 @@ export default function CursoDetail({ data, pageContext }) {
           handleShowCarrito={handleShowCarrito}
           setCartStep={setCartStep}
           cartStep={cartStep}
+          language={language}
         />
       )}
     </div>
@@ -164,21 +178,6 @@ export default function CursoDetail({ data, pageContext }) {
 
 export const menuQuery = graphql`
   query($slug: String!) {
-    allWpMenu(filter: { slug: { glob: "menu-academy" } }) {
-      edges {
-        node {
-          slug
-          name
-          menuItems {
-            nodes {
-              id
-              label
-              url
-            }
-          }
-        }
-      }
-    }
     wpProduct(slug: { eq: $slug }) {
       id
       productId
@@ -199,6 +198,11 @@ export const menuQuery = graphql`
       productCategories {
         nodes {
           name
+          acfCategoria {
+            es
+            en
+          }
+
           image {
             id
             localFile {
@@ -218,13 +222,28 @@ export const menuQuery = graphql`
         price
       }
       acfCursos {
-        fechaDeInicio
-        fechaHora
-        metodologia
-        orientacion
-        precioFormasDePago
-        profesor
-        temario
+        es {
+          fechaDeInicioEs
+          fechaHoraEs
+          metodologiaEs
+          orientacionEs
+          precioFormasDePagoEs
+          profesorEs
+          temarioEs
+          descripcionEs
+          tituloEs
+        }
+        en {
+          fechaDeInicioEn
+          fechaHoraEn
+          metodologiaEn
+          orientacionEn
+          precioFormasDePagoEn
+          profesorEn
+          temarioEn
+          descripcionEn
+          tituloEn
+        }
       }
     }
   }

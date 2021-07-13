@@ -12,8 +12,12 @@ import SocialBlock from "../components/social-block";
 import escribinosImg from "../images/escribinos-academy.png";
 import logo from "../images/logo-ateitis-academy.png";
 import StickyImg from "../images/landing-page-computer.png";
+import translations from "../utils/translations";
 
-export default function AcademyPage({ data }) {
+export default function AcademyPage({ data, pathContext }) {
+  const language = "en";
+  console.log(data);
+
   const handleCloseCarrito = () => {
     setShowCarrito(undefined);
     setCartStep(undefined);
@@ -22,15 +26,17 @@ export default function AcademyPage({ data }) {
     setShowCarrito(true);
     setCartStep(1);
   };
-  const [showCarrito, setShowCarrito] = useQueryParam("carrito", BooleanParam);
+  const [showCarrito, setShowCarrito] = useQueryParam("cart", BooleanParam);
+
   const [cartStep, setCartStep] = useQueryParam("step", NumberParam);
 
+  const servicesLink = language === "en" ? "/en/services" : "/servicios";
   return (
     <div id="academy-page">
       <SEO title="Academy" />
 
-      <a className="servicios-link hvr-radial-out" href="/servicios">
-        <span>¿QUERÉS CONOCER NUESTROS SERVICIOS?</span>
+      <a className="servicios-link hvr-radial-out" href={servicesLink}>
+        <span>{translations.knowOurServices[language]}</span>
       </a>
       <Row noGutters className="logo-container">
         <Col>
@@ -42,6 +48,7 @@ export default function AcademyPage({ data }) {
       <NavbarMenu
         menu={data.allWpMenu.edges[0].node.menuItems.nodes}
         section="academy"
+        language={language}
       ></NavbarMenu>
 
       <div className="main-section-wrapper">
@@ -53,7 +60,7 @@ export default function AcademyPage({ data }) {
             <Container>
               <Row>
                 <Col>
-                  <AcademyBlock></AcademyBlock>
+                  <AcademyBlock language={language}></AcademyBlock>
                 </Col>
               </Row>
             </Container>
@@ -61,7 +68,7 @@ export default function AcademyPage({ data }) {
             <Container>
               <Row className="mb-4 mt-4">
                 <Col>
-                  <CursosBlock></CursosBlock>
+                  <CursosBlock language={language}></CursosBlock>
                 </Col>
               </Row>
             </Container>
@@ -74,7 +81,7 @@ export default function AcademyPage({ data }) {
         </div>
         <Container fluid className="seccion-contacto academy mt-4">
           <Row>
-            <ContactoBlock></ContactoBlock>
+            <ContactoBlock language={language}></ContactoBlock>
           </Row>
           <Row className="py-3">
             <SocialBlock></SocialBlock>
@@ -87,6 +94,7 @@ export default function AcademyPage({ data }) {
             handleShowCarrito={handleShowCarrito}
             setCartStep={setCartStep}
             cartStep={cartStep}
+            language={language}
           />
         )}
       </div>

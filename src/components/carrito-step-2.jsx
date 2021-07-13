@@ -5,6 +5,7 @@ import Select from "react-select";
 import { v4 } from "uuid";
 import CHECKOUT_MUTATION from "../mutations/checkout";
 import { createCheckoutData } from "../utils/functions";
+import translations from "../utils/translations";
 import validateAndSanitizeCheckoutForm from "../validator/checkout";
 import CheckoutError from "./checkout-error/index";
 import countryList from "./country-list";
@@ -25,6 +26,7 @@ export function CarritoStep2({
   cart,
   setCart,
   loading,
+  language,
 }) {
   const monedasOptions = monedas.map(x => {
     return {
@@ -61,23 +63,23 @@ export function CarritoStep2({
   //const { cart, setCart } = useContext(AppContext);
 
   // Checkout or CreateOrder Mutation.
-  const [
-    checkout,
-    { data: checkoutResponse, loading: checkoutLoading },
-  ] = useMutation(CHECKOUT_MUTATION, {
-    variables: {
-      input: orderData,
-    },
-    onCompleted: () => {
-      console.warn("completed CHECKOUT_MUTATION");
-      //   refetch();
-    },
-    onError: error => {
-      if (error) {
-        setRequestError(error.graphQLErrors[0].message);
-      }
-    },
-  });
+  const [checkout, { data: checkoutResponse, loading: checkoutLoading }] = useMutation(
+    CHECKOUT_MUTATION,
+    {
+      variables: {
+        input: orderData,
+      },
+      onCompleted: () => {
+        console.warn("completed CHECKOUT_MUTATION");
+        //   refetch();
+      },
+      onError: error => {
+        if (error) {
+          setRequestError(error.graphQLErrors[0].message);
+        }
+      },
+    }
+  );
 
   /*
    * Handle form submit.
@@ -141,12 +143,8 @@ export function CarritoStep2({
       {loading && <LoadingComponentOverlay />}
       {cart ? (
         <Fragment>
-          <Modal.Header
-            closeButton
-            className={`carrito-modal-header`}
-            closeButton
-          >
-            <Modal.Title>DETALLE DE FACTURACIÓN</Modal.Title>
+          <Modal.Header closeButton className={`carrito-modal-header`} closeButton>
+            <Modal.Title>{translations.cart.invoiceDetails[language]}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Container>
@@ -157,7 +155,7 @@ export function CarritoStep2({
                       <Form.Control
                         required
                         type="text"
-                        placeholder="NOMBRE*"
+                        placeholder={translations.cart.invoiceForm.firstName[language]}
                         name="firstName"
                         //value={input.firstName}
                         onChange={handleOnChange}
@@ -167,7 +165,7 @@ export function CarritoStep2({
                       <Form.Control
                         required
                         type="text"
-                        placeholder="APELLIDO*"
+                        placeholder={translations.cart.invoiceForm.lastName[language]}
                         name="lastName"
                         //value={input.lastName}
                         onChange={handleOnChange}
@@ -179,7 +177,7 @@ export function CarritoStep2({
                       <Form.Control
                         required
                         type="text"
-                        placeholder="NOMBRE DE LA EMPRESA*"
+                        placeholder={translations.cart.invoiceForm.company[language]}
                         name="company"
                         value={input.company}
                         onChange={handleOnChange}
@@ -193,13 +191,12 @@ export function CarritoStep2({
                         value={input.country}
                         onChange={handleOnChange}
                       >
-                        <option value="">SELECCIONÁ TU PAÍS...</option>
+                        <option value="">
+                          {translations.cart.invoiceForm.country[language]}
+                        </option>
                         {countryList.length &&
                           countryList.map((country, index) => (
-                            <option
-                              key={`${country}-${index}`}
-                              value={country.code}
-                            >
+                            <option key={`${country}-${index}`} value={country.code}>
                               {country.name}
                             </option>
                           ))}
@@ -211,7 +208,7 @@ export function CarritoStep2({
                       <Form.Control
                         required
                         type="text"
-                        placeholder="PROVINCIA/REGIÓN*"
+                        placeholder={translations.cart.invoiceForm.state[language]}
                         name="state"
                         value={input.state}
                         onChange={handleOnChange}
@@ -221,7 +218,7 @@ export function CarritoStep2({
                       <Form.Control
                         required
                         type="text"
-                        placeholder="LOCALIDAD/CIUDAD*"
+                        placeholder={translations.cart.invoiceForm.city[language]}
                         name="city"
                         value={input.city}
                         onChange={handleOnChange}
@@ -233,7 +230,7 @@ export function CarritoStep2({
                       <Form.Control
                         required
                         type="text"
-                        placeholder="DIRECCIÓN DE LA CALLE*"
+                        placeholder={translations.cart.invoiceForm.address[language]}
                         name="address1"
                         value={input.address1}
                         onChange={handleOnChange}
@@ -242,7 +239,7 @@ export function CarritoStep2({
                     <Col sm={12} md={6} className={`mb-${gutter}`}>
                       <Form.Control
                         type="text"
-                        placeholder="NÚMERO DE CASA/APARTAMENTO"
+                        placeholder={translations.cart.invoiceForm.number[language]}
                         name="address2"
                         value={input.address2}
                         onChange={handleOnChange}
@@ -253,7 +250,7 @@ export function CarritoStep2({
                     <Col sm={12} md={6} className={`mb-${gutter}`}>
                       <Form.Control
                         type="text"
-                        placeholder="CÓDIGO POSTAL"
+                        placeholder={translations.cart.invoiceForm.cp[language]}
                         name="postcode"
                         value={input.postcode}
                         onChange={handleOnChange}
@@ -263,7 +260,7 @@ export function CarritoStep2({
                       <Form.Control
                         required
                         type="tel"
-                        placeholder="TELÉFONO*"
+                        placeholder={translations.cart.invoiceForm.phone[language]}
                         name="phone"
                         value={input.phone}
                         onChange={handleOnChange}
@@ -275,7 +272,7 @@ export function CarritoStep2({
                       <Form.Control
                         required
                         type="email"
-                        placeholder="E-MAIL*"
+                        placeholder={translations.cart.invoiceForm.email[language]}
                         name="email"
                         value={input.email}
                         onChange={handleOnChange}
@@ -283,7 +280,9 @@ export function CarritoStep2({
                     </Col>
                     <Col sm={12} md={6} className={`mb-${gutter}`}>
                       <Form.Group controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>INFORMACIÓN ADICIONAL</Form.Label>
+                        <Form.Label>
+                          {translations.cart.invoiceForm.additionalInformation[language]}
+                        </Form.Label>
                         <Form.Control
                           as="textarea"
                           rows={1}
@@ -298,7 +297,9 @@ export function CarritoStep2({
                     <Col>
                       <div className="carrito-modal-body">
                         <div className="seleccion-moneda">
-                          <div className="label">SELECCIONA TU MONEDA</div>
+                          <div className="label">
+                            {translations.cart.selectCoin[language].toUpperCase()}
+                          </div>
                           <Select
                             className="flex-select"
                             value={moneda}
@@ -330,30 +331,25 @@ export function CarritoStep2({
                   <div className="metodo-pago">
                     <Row>
                       <Col sm={12} md={12} className={`mb-${gutter}`}>
-                        <p>Elije tu método de pago</p>
+                        <p>{translations.cart.invoiceForm.choosePaymentMethod[language]}</p>
                       </Col>
                     </Row>
                   </div>
                   <Row className={`mb-${gutter_m}`}>
                     <Col sm={12} md={12}>
-                      <PaymentMethods
-                        handleOnChange={handleOnChange}
-                        moneda={moneda}
-                      />
+                      <PaymentMethods handleOnChange={handleOnChange} moneda={moneda} />
                     </Col>
                   </Row>
                   <Row className={`mb-${gutter_m} finalizar-compra`}>
                     <Col sm={12} md={12}>
                       <Button type="submit" size="lg">
-                        INICIAR COMPRA
+                        {translations.cart.purchase[language].toUpperCase()}
                       </Button>
                     </Col>
                   </Row>
                   {/* Checkout Loading*/}
                   {checkoutLoading && <p>Procesando...</p>}
-                  {requestError && (
-                    <CheckoutError requestError={requestError} />
-                  )}
+                  {requestError && <CheckoutError requestError={requestError} />}
                 </div>
               </Form>
             </Container>
@@ -364,7 +360,7 @@ export function CarritoStep2({
       )}
 
       {/*Show message if Order Success*/}
-      <OrderSuccess response={checkoutResponse} />
+      <OrderSuccess response={checkoutResponse} language={language} />
     </>
   );
 }

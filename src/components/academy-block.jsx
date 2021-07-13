@@ -7,9 +7,14 @@ import { Col, Container, Row } from "react-bootstrap";
 import Certificaciones from "./certificaciones";
 import CursosBlock from "./cursos-block";
 
-export default function AcademyBlock() {
+export default function AcademyBlock({ language }) {
   const data = useStaticQuery(pageQuery);
-  const contenido = data.allWpPage.edges[0].node;
+
+  /* l ser un componente, solo podemos hacer queries estaticas, por eso nos traemos las dos versiones de los idiomas y filtramos por js */
+  /* https://www.gatsbyjs.com/docs/how-to/querying-data/use-static-query/ */
+  /* Otra opcion es hacer queries diferentes para cada idioma en diferentes archivos */
+
+  const contenido = data.allWpPage.nodes.find(node => node.language.slug === language);
 
   return (
     <Fragment>
@@ -32,43 +37,17 @@ export default function AcademyBlock() {
 
 const pageQuery = graphql`
   query AcademyBlockQuery {
-    allWpServiciosItem {
-      edges {
-        node {
-          id
-          title
-          acfServiciosListado {
-            color
-            subTitulo
-            orden
-            texto
-            icono {
-              sourceUrl
-              localFile {
-                id
-                childImageSharp {
-                  id
-                  fixed(width: 400) {
-                    # Choose either the fragment including a small base64ed image, a traced placeholder SVG, or one without.
-                    ...GatsbyImageSharpFixed_noBase64
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    allWpPage(filter: { slug: { eq: "academy" } }) {
-      edges {
-        node {
-          id
-          title
+    allWpPage(filter: { title: { eq: "Academy" } }) {
+      nodes {
+        id
+        title
+        slug
+        language {
           slug
-          acfAcademy {
-            descripcion
-            fieldGroupName
-          }
+        }
+        acfAcademy {
+          descripcion
+          fieldGroupName
         }
       }
     }

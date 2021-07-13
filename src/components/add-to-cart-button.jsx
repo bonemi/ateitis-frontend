@@ -6,12 +6,14 @@ import { v4 } from "uuid";
 import cartImg from "../images/cart.png";
 import ADD_TO_CART from "../mutations/add-to-cart";
 import GET_CART from "../queries/get-cart";
+import translations from "../utils/translations";
 import { AppContext } from "./context/AppContext";
-
-export default function AddToCartButton({ product, caption, className }) {
+import { toTitleCase } from "../utils/string-utils";
+export default function AddToCartButton({ product, caption, className, language }) {
   const { addToast, removeAllToasts } = useToasts();
   const { cart, setCart } = useContext(AppContext);
-  const { name, productId } = product;
+
+  const name = product.acfCursos[language]["titulo" + toTitleCase(language)];
 
   // Get Cart Data.
   const [getCart, { loading, data }] = useLazyQuery(GET_CART, {
@@ -43,10 +45,10 @@ export default function AddToCartButton({ product, caption, className }) {
       // 1. Make the GET_CART query to update the cart with new values in React context.
       addToast(
         <div className="toast-content">
-          <div>{`El producto ${name} se ha agregado al carrito.`}</div>
+          <div>{`${translations.cart.theProduct[language]} ${name} ${translations.cart.added[language]}.`}</div>
           <div>
-            <Button href="?carrito=1" variant="outline-dark">
-              Ver Carrito
+            <Button href={`?${translations.cart.cart[language]}=1`} variant="outline-dark">
+              {translations.cart.seeCart[language]}
             </Button>
           </div>
         </div>,
@@ -59,7 +61,7 @@ export default function AddToCartButton({ product, caption, className }) {
     },
 
     onError: error => {
-      addToast("No se pudo agregar el producto al carrito.", {
+      addToast(translations.cart.cantAdd[language], {
         appearance: "error",
         autoDismiss: true,
       });
@@ -68,29 +70,15 @@ export default function AddToCartButton({ product, caption, className }) {
 
   if (addToCartLoading)
     return (
-      <Button
-        variant="dark"
-        disabled
-        className={`add-to-cart-button  ${className}`}
-      >
-        <Spinner
-          as="span"
-          animation="border"
-          role="status"
-          variant="light"
-          size="sm"
-        >
+      <Button variant="dark" disabled className={`add-to-cart-button  ${className}`}>
+        <Spinner as="span" animation="border" role="status" variant="light" size="sm">
           <span className="sr-only">Loading...</span>
         </Spinner>
         {caption} <img src={cartImg}></img>
       </Button>
     );
   return (
-    <Button
-      onClick={addToCart}
-      variant="dark"
-      className={`add-to-cart-button ${className}`}
-    >
+    <Button onClick={addToCart} variant="dark" className={`add-to-cart-button ${className}`}>
       <span></span>
       <span>{caption} </span>
       <img src={cartImg}></img>

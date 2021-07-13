@@ -17,6 +17,7 @@ import { AppContext } from "./context/AppContext";
 import LoadingComponentOverlay from "./loading-component-overlay";
 
 export default function Carrito({
+  language,
   show,
   handleCloseCarrito,
   cartStep,
@@ -81,11 +82,7 @@ export default function Carrito({
   /* REMOVE ITEM FROM CART */
   const [
     removeItemsFromCart,
-    {
-      data: deleteFromCartRes,
-      loading: deletFromCartLoading,
-      error: deleteFromCartError,
-    },
+    { data: deleteFromCartRes, loading: deletFromCartLoading, error: deleteFromCartError },
   ] = useMutation(REMOVE_ITEMS_FROM_CART, {
     onCompleted: data => {
       console.log(`Se elimino: `, data);
@@ -116,11 +113,7 @@ export default function Carrito({
 
   const [
     applyCoupon,
-    {
-      data: applyCouponRes,
-      loading: applyCouponLoading,
-      error: applyCouponError,
-    },
+    { data: applyCouponRes, loading: applyCouponLoading, error: applyCouponError },
   ] = useMutation(APPLY_COUPON_MUTATION, {
     onCompleted: data => {
       //   console.log(`Carrito Luego del cupon: : `, data.applyCoupon.cart);
@@ -136,11 +129,7 @@ export default function Carrito({
   /* REMOVE ALL COUPONS */
   const [
     removeAllCoupons,
-    {
-      data: removeCouponRes,
-      loading: removeCouponLoading,
-      error: removeCouponError,
-    },
+    { data: removeCouponRes, loading: removeCouponLoading, error: removeCouponError },
   ] = useMutation(REMOVE_COUPONS_MUTATION, {
     onCompleted: data => {
       setCart(data.removeCoupons.cart);
@@ -168,6 +157,7 @@ export default function Carrito({
           removeItemsFromCart={removeItemsFromCart}
           changeCurrency={changeCurrency}
           loading={updateCartLoading || loading}
+          language={language}
         ></CarritoStep2>
       </Modal>
     );
@@ -188,12 +178,8 @@ export default function Carrito({
           updateCart={updateCart}
           removeItemsFromCart={removeItemsFromCart}
           changeCurrency={changeCurrency}
-          loading={
-            updateCartLoading ||
-            loading ||
-            removeCouponLoading ||
-            applyCouponLoading
-          }
+          loading={updateCartLoading || loading || removeCouponLoading || applyCouponLoading}
+          language={language}
         ></CarritoStep1>
       </Modal>
     );
