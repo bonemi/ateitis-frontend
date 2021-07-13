@@ -249,7 +249,9 @@ export function CarritoStep1({
                   block
                   variant="light"
                   size="lg"
-                  href={`/academy#${translations.courses[language].toLowerCase()}`}
+                  href={`${
+                    language === "es" ? "" : "/" + language
+                  }/academy#${translations.courses[language].toLowerCase()}`}
                   className="w-md-100"
                 >
                   {translations.cart.seeMoreCourses[language].toUpperCase()}
