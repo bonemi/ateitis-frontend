@@ -43,7 +43,7 @@ export function CarritoStep1({
   const [appliedCouponCode, setAppliedCouponCode] = useState("");
 
   if (!cart || !cart.contents) {
-    return <div className="empty-cart">El carrito está vacío.</div>;
+    return <div className="empty-cart">{translations.cart.emptyCart[language]}</div>;
   }
 
   const products = cart.contents.nodes;
