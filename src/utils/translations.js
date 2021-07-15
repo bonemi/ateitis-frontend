@@ -71,7 +71,7 @@ const translations = {
   },
   knowOurAcademy: {
     es: "¿QUERÉS CONOCER NUESTRA ACADEMY?",
-    en: "DO YOY WANT TO KNOW OUR ACADEMY?",
+    en: "DO YOU WANT TO KNOW OUR ACADEMY?",
   },
   contactForm: {
     empresa: {

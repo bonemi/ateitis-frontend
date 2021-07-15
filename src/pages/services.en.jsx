@@ -11,6 +11,7 @@ import SocialBlock from "../components/social-block";
 import SEO from "../components/seo";
 import StickyImg from "../images/landing-page-computer.png";
 import translations from "../utils/translations";
+import flagSpain from "../images/flag-spain.png";
 
 export default function ServiciosPage({ data, location }) {
   const language = "en";
@@ -20,6 +21,10 @@ export default function ServiciosPage({ data, location }) {
       <SEO title="Servicios" />
       <a className="academy-link hvr-radial-out" href={academyLink}>
         <span>{translations.knowOurAcademy[language]}</span>
+      </a>
+      <a className="languageSelectorPages" href="/servicios">
+        <img src={flagSpain} alt="" />
+        <span>SITIO EN ESPAÑOL</span>
       </a>
       <Row noGutters className="logo-container">
         <Col>

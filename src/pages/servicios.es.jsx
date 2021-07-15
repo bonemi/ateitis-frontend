@@ -10,6 +10,7 @@ import ContactoBlock from "../components/contacto-block";
 import SocialBlock from "../components/social-block";
 import SEO from "../components/seo";
 import StickyImg from "../images/landing-page-computer.png";
+import flagUsa from "../images/flag-usa.png";
 
 export default function ServiciosPage({ data, location }) {
   const language = "es";
@@ -18,6 +19,10 @@ export default function ServiciosPage({ data, location }) {
       <SEO title="Servicios" />
       <a className="academy-link hvr-radial-out" href="/academy">
         <span>¿QUERÉS CONOCER NUESTRA ACADEMY?</span>
+      </a>
+      <a className="languageSelectorPages" href="/en/services">
+        <img src={flagUsa} alt="" />
+        <span>ENGLISH SITE</span>
       </a>
       <Row noGutters className="logo-container">
         <Col>

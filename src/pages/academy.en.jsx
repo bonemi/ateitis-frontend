@@ -13,7 +13,7 @@ import escribinosImg from "../images/escribinos-academy.png";
 import logo from "../images/logo-ateitis-academy.png";
 import StickyImg from "../images/landing-page-computer.png";
 import translations from "../utils/translations";
-
+import flagSpain from "../images/flag-spain.png";
 export default function AcademyPage({ data, pathContext }) {
   const language = "en";
   console.log(data);
@@ -37,6 +37,10 @@ export default function AcademyPage({ data, pathContext }) {
 
       <a className="servicios-link hvr-radial-out" href={servicesLink}>
         <span>{translations.knowOurServices[language]}</span>
+      </a>
+      <a className="languageSelectorPages" href="/academy">
+        <img src={flagSpain} alt="" />
+        <span>SITIO EN ESPAÑOL</span>
       </a>
       <Row noGutters className="logo-container">
         <Col>

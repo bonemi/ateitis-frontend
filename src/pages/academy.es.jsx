@@ -12,7 +12,7 @@ import SocialBlock from "../components/social-block";
 import escribinosImg from "../images/escribinos-academy.png";
 import logo from "../images/logo-ateitis-academy.png";
 import StickyImg from "../images/landing-page-computer.png";
-
+import flagUsa from "../images/flag-usa.png";
 export default function AcademyPage({ data }) {
   const language = "es";
 
@@ -33,6 +33,10 @@ export default function AcademyPage({ data }) {
 
       <a className="servicios-link hvr-radial-out" href="/servicios">
         <span>¿QUERÉS CONOCER NUESTROS SERVICIOS?</span>
+      </a>
+      <a className="languageSelectorPages" href="/en/academy">
+        <img src={flagUsa} alt="" />
+        <span>ENGLISH SITE</span>
       </a>
       <Row noGutters className="logo-container">
         <Col>

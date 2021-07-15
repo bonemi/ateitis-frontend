@@ -30,7 +30,7 @@ export default function IndexPage({ data }) {
       </div>
       <a className="languageSelector" href="/">
         <img src={flagSpain} alt="" />
-        <span>SPANISH SITE</span>
+        <span>SITIO EN ESPAÑOL</span>
       </a>
 
       <div className="nav-container">

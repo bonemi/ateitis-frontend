@@ -29,6 +29,39 @@
   }
 }
 
+.languageSelectorPages {
+  color: white;
+  font-weight: 400;
+  border-color: #ee9537;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: start;
+  font-size: 1rem;
+  z-index: 999;
+  position: absolute;
+  top: 38px;
+  left: 66px;
+  @media screen and (max-width: $lg) and (orientation: portrait) {
+    position: inherit;
+    margin: 16px;
+    justify-content: center;
+  }
+
+  &:hover {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+  }
+  img {
+    min-width: 18px;
+    min-height: 18px;
+    width: 1.2vw;
+    height: 1.2vw;
+    margin-right: 10px;
+  }
+}
+
 #index {
   overflow: hidden;
   .background {
