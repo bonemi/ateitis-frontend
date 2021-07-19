@@ -72,7 +72,7 @@ export function CarritoStep1({
         },
       },
     });
-    console.log("Cupon aplicado: " + appliedCouponCode);
+    // console.log("Cupon aplicado: " + appliedCouponCode);
   }
   //   if (loading) {
   //     return <LoadingComponentOverlay />;

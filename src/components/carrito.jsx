@@ -47,7 +47,7 @@ export default function Carrito({
   });
 
   useEffect(() => {
-    console.log("mount");
+    // console.log("mount");
     const currentCurrency = getCurrentCurrency();
   }, []);
 
@@ -58,8 +58,8 @@ export default function Carrito({
       const updatedCart = data.cart;
       localStorage.setItem("woo-next-cart", JSON.stringify(updatedCart));
       setCart(updatedCart);
-      console.log(updatedCart);
-      console.log("Carrito Fetched");
+      // console.log(updatedCart);
+      // console.log("Carrito Fetched");
     },
     onError: error => {
       console.log(error);
@@ -85,21 +85,21 @@ export default function Carrito({
     { data: deleteFromCartRes, loading: deletFromCartLoading, error: deleteFromCartError },
   ] = useMutation(REMOVE_ITEMS_FROM_CART, {
     onCompleted: data => {
-      console.log(`Se elimino: `, data);
+      // console.log(`Se elimino: `, data);
       refetch();
     },
     onError: error => {
-      console.log(error);
+      // console.log(error);
     },
   });
 
   /* CHANGE CURRENCY */
   const [changeCurrency] = useMutation(SET_CURRENCY, {
     onCompleted: data => {
-      console.log("Se cambio la moneda a: ");
-      console.log(data.setCurrency.newCurrency);
+      // console.log("Se cambio la moneda a: ");
+      // console.log(data.setCurrency.newCurrency);
       setTimeout(() => {
-        console.log("refecth");
+        // console.log("refecth");
         refetch();
       }, 100);
     },

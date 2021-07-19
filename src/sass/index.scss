@@ -42,11 +42,16 @@
   position: absolute;
   top: 38px;
   left: 66px;
-  @media screen and (max-width: $lg) and (orientation: portrait) {
+  @media screen and (max-width: $md) {
     position: inherit;
     margin: 16px;
     justify-content: center;
   }
+  // @media screen and (max-width: $lg) and (orientation: portrait) {
+  //   position: inherit;
+  //   margin: 16px;
+  //   justify-content: center;
+  // }
 
   &:hover {
     text-decoration: none;

@@ -40,7 +40,7 @@ function CarritoItem({ item, updateCart, removeItemsFromCart, language }) {
     setQty(qty + newQty);
 
     inputTimeOut = setTimeout(() => {
-      console.log("update: " + qtyRef.current);
+      // console.log("update: " + qtyRef.current);
       updateCart({
         variables: {
           input: {

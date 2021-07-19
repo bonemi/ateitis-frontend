@@ -7,7 +7,6 @@ import { Col, Container, Row } from "react-bootstrap";
 import cableImg from "../images/cable.png";
 
 export default function NosotrosBlock({ data, language }) {
-  console.log(data);
   const contenido = data.nosotrosPage.edges[0].node;
   data.allWpNosotrosItem.edges.sort((a, b) =>
     a.node.acfNosotrosListado.orden > b.node.acfNosotrosListado.orden ? 1 : -1

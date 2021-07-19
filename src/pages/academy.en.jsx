@@ -9,14 +9,13 @@ import CursosBlock from "../components/cursos-block";
 import NavbarMenu from "../components/navbar";
 import SEO from "../components/seo";
 import SocialBlock from "../components/social-block";
-import escribinosImg from "../images/escribinos-academy.png";
+import escribinosImg from "../images/escribinos-academy-en.png";
 import logo from "../images/logo-ateitis-academy.png";
 import StickyImg from "../images/landing-page-computer.png";
 import translations from "../utils/translations";
 import flagSpain from "../images/flag-spain.png";
 export default function AcademyPage({ data, pathContext }) {
   const language = "en";
-  console.log(data);
 
   const handleCloseCarrito = () => {
     setShowCarrito(undefined);

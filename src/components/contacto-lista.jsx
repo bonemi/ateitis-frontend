@@ -21,7 +21,7 @@ export default function ContactoLista({ data, nodeName }) {
     return null;
   }
 
-  console.log(contenido);
+  // console.log(contenido);
 
   return (
     <div className="contacto-lista-container">

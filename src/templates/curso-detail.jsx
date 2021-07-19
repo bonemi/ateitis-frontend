@@ -15,6 +15,7 @@ import clockImg from "../images/clock-white.png";
 import cogImg from "../images/cog-white.png";
 import directionsImg from "../images/directions-white.png";
 import escribinosImg from "../images/escribinos-academy.png";
+import escribinosImgEn from "../images/escribinos-academy-en.png";
 import listImg from "../images/list-white.png";
 import logo from "../images/logo-ateitis-academy.png";
 import tagImg from "../images/tag-white.png";
@@ -24,8 +25,9 @@ import translations from "../utils/translations";
 
 export default function CursoDetail({ data, pageContext }) {
   const { slug, language, localizedSlug, acfCursos } = pageContext;
-  console.log(pageContext);
-  console.log(data);
+  // console.log(pageContext);
+  // console.log(data);
+  // console.log(language);
   const handleCloseCarrito = () => {
     setShowCarrito(undefined);
     setCartStep(undefined);
@@ -151,7 +153,11 @@ export default function CursoDetail({ data, pageContext }) {
       </Container>
       <Container fluid className="escribinos-container">
         <Row className="justify-content-end">
-          <img src={escribinosImg} alt="Escribinos" className="img-fluid" />
+          <img
+            src={language == "es" ? escribinosImg : escribinosImgEn}
+            alt="Escribinos"
+            className="img-fluid"
+          />
         </Row>
       </Container>
       <Container fluid className="seccion-contacto academy mt-4">

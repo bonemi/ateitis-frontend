@@ -10,7 +10,7 @@ import flagUsa from "../images/flag-usa.png";
 export default function IndexPage({ data }) {
   const language = "es";
 
-  console.log(data);
+  // console.log(data);
   /* Cargar los menues de wordpress, via grapqhl page query */
   const serviciosLink = data.menu.edges[0].node.menuItems.nodes.find(x =>
     x.url.includes("servicios")

@@ -5,6 +5,7 @@ import InfiniteScroller from "./infiniteScroller";
 import Titulo from "./titulo";
 import TestimoniosBlock from "./testimonios-block";
 import escribinosImg from "../images/escribinos.png";
+import escribinosImgEn from "../images/escribinos-en.png";
 // import escribinosImgEn from "../images/escribinosEn.png";
 
 import translations from "../utils/translations";
@@ -54,7 +55,13 @@ export default function ClientesBlock({ language, data }) {
       </Container>
       <Container fluid className="escribinos-container">
         <Row className="justify-content-end">
-          <img src={escribinosImg} alt="Escribinos" className="img-fluid" />
+          {
+            <img
+              src={language == "es" ? escribinosImg : escribinosImgEn}
+              alt="Escribinos"
+              className="img-fluid"
+            />
+          }
         </Row>
       </Container>
     </Fragment>

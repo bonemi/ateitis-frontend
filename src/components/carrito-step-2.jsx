@@ -123,7 +123,7 @@ export function CarritoStep2({
       const newState = { ...input, [event.target.name]: !input.createAccount };
       setInput(newState);
     } else {*/
-    console.log("handlechange");
+    // console.log("handlechange");
     const newState = { ...input, [event.target.name]: event.target.value };
     setInput(newState);
     //}

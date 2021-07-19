@@ -42,9 +42,7 @@ export const middleware = new ApolloLink((operation, forward) => {
   /**
    * If auth token exist in local storage, set value as authorization header.
    */
-  const auth = process.browser
-    ? JSON.parse(localStorage.getItem("auth"))
-    : null;
+  const auth = process.browser ? JSON.parse(localStorage.getItem("auth")) : null;
   const token = !isEmpty(auth) ? auth.authToken : null;
 
   if (!isEmpty(token)) {
@@ -102,7 +100,7 @@ export const afterware = new ApolloLink((operation, forward) => {
 });
 
 export const link = new ApolloLink((operation, forward) => {
-  console.log("Add");
+  // console.log("Add");
   return forward(operation);
 });
 

@@ -28,7 +28,7 @@ export default function CursoCard({ curso, language }) {
     dayjs.tz.setDefault("America/Argentina/Buenos_Aires");
   }
 
-  console.log(curso);
+  // console.log(curso);
   const fechaDeInicio = curso.acfCursos[language]["fechaDeInicio" + toTitleCase(language)];
   const fechaHora = curso.acfCursos[language]["fechaHora" + toTitleCase(language)];
   const metodologia = curso.acfCursos[language]["metodologia" + toTitleCase(language)];
