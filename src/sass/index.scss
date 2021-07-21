@@ -69,7 +69,7 @@
 
 .scrollTop {
   position: fixed;
-  width: 100%;
+  width: 42px;
   bottom: 52px;
   align-items: center;
   height: 20px;
@@ -79,6 +79,10 @@
   animation: fadeIn 0.3s;
   transition: opacity 0.4s;
   opacity: 0.4;
+  right: 48px;
+  @media screen and (max-width: $md) {
+    right: 44%;
+  }
 }
 
 .scrollTop:hover {
