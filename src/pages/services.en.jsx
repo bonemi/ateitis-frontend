@@ -12,6 +12,7 @@ import SEO from "../components/seo";
 import StickyImg from "../images/landing-page-computer.png";
 import translations from "../utils/translations";
 import flagSpain from "../images/flag-spain.png";
+import ScrollArrow from "../components/ui/scroll-arrow";
 
 export default function ServiciosPage({ data, location }) {
   const language = "en";
@@ -19,6 +20,7 @@ export default function ServiciosPage({ data, location }) {
   return (
     <div id="servicios-page">
       <SEO title="Servicios" />
+      <ScrollArrow />
       <a className="academy-link hvr-radial-out" href={academyLink}>
         <span>{translations.knowOurAcademy[language]}</span>
       </a>

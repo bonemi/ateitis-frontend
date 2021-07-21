@@ -14,6 +14,8 @@ import logo from "../images/logo-ateitis-academy.png";
 import StickyImg from "../images/landing-page-computer.png";
 import translations from "../utils/translations";
 import flagSpain from "../images/flag-spain.png";
+import ScrollArrow from "../components/ui/scroll-arrow";
+
 export default function AcademyPage({ data, pathContext }) {
   const language = "en";
 
@@ -33,6 +35,7 @@ export default function AcademyPage({ data, pathContext }) {
   return (
     <div id="academy-page">
       <SEO title="Academy" />
+      <ScrollArrow />
 
       <a className="servicios-link hvr-radial-out" href={servicesLink}>
         <span>{translations.knowOurServices[language]}</span>

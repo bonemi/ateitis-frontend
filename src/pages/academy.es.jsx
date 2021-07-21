@@ -13,6 +13,7 @@ import escribinosImg from "../images/escribinos-academy.png";
 import logo from "../images/logo-ateitis-academy.png";
 import StickyImg from "../images/landing-page-computer.png";
 import flagUsa from "../images/flag-usa.png";
+import ScrollArrow from "../components/ui/scroll-arrow";
 export default function AcademyPage({ data }) {
   const language = "es";
 
@@ -30,7 +31,7 @@ export default function AcademyPage({ data }) {
   return (
     <div id="academy-page">
       <SEO title="Academy" />
-
+      <ScrollArrow />
       <a className="servicios-link hvr-radial-out" href="/servicios">
         <span>¿QUERÉS CONOCER NUESTROS SERVICIOS?</span>
       </a>

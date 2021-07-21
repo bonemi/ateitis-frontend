@@ -19,14 +19,16 @@ import escribinosImgEn from "../images/escribinos-academy-en.png";
 import listImg from "../images/list-white.png";
 import logo from "../images/logo-ateitis-academy.png";
 import tagImg from "../images/tag-white.png";
+import flagUsa from "../images/flag-usa.png";
 import menu from "../utils/menu";
 import { toTitleCase } from "../utils/string-utils";
 import translations from "../utils/translations";
+import ScrollArrow from "../components/ui/scroll-arrow";
 
 export default function CursoDetail({ data, pageContext }) {
   const { slug, language, localizedSlug, acfCursos } = pageContext;
-  // console.log(pageContext);
-  // console.log(data);
+  console.log(pageContext);
+  console.log(data);
   // console.log(language);
   const handleCloseCarrito = () => {
     setShowCarrito(undefined);
@@ -64,13 +66,30 @@ export default function CursoDetail({ data, pageContext }) {
   const categoria = data.wpProduct.productCategories.nodes[0];
   const serviciosLink = language === "en" ? "/en/services" : "/servicios";
 
+  const slugEn = data.wpProduct.acfCursos.en.slugEn;
+  const slugEs = data.wpProduct.acfCursos.es.slugEs;
+  // console.log(language);
+  // console.log(slugEn);
+  // console.log(slugEs);
+  // console.log(localizedSlug);
   return (
     <div id="academy-page">
       <SEO title="Academy" />
-
+      <ScrollArrow />
       <a className="servicios-link hvr-radial-out" href={serviciosLink}>
         <span>{translations.knowOurServices[language]}</span>
       </a>
+      {language === "es" ? (
+        <a className="languageSelectorPages" href={`/en/academy/${slugEn}`}>
+          <img src={flagUsa} alt="" />
+          <span>ENGLISH SITE</span>
+        </a>
+      ) : (
+        <a className="languageSelectorPages" href={`/academy/${slugEs}`}>
+          <img src={flagUsa} alt="" />
+          <span>SITIO EN ESPAÑOL</span>
+        </a>
+      )}
       <Row noGutters className="logo-container">
         <Col>
           <div className="logo">
@@ -238,6 +257,7 @@ export const menuQuery = graphql`
           temarioEs
           descripcionEs
           tituloEs
+          slugEs
         }
         en {
           fechaDeInicioEn
@@ -249,6 +269,7 @@ export const menuQuery = graphql`
           temarioEn
           descripcionEn
           tituloEn
+          slugEn
         }
       }
     }

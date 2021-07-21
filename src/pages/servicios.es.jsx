@@ -11,12 +11,14 @@ import SocialBlock from "../components/social-block";
 import SEO from "../components/seo";
 import StickyImg from "../images/landing-page-computer.png";
 import flagUsa from "../images/flag-usa.png";
+import ScrollArrow from "../components/ui/scroll-arrow";
 
 export default function ServiciosPage({ data, location }) {
   const language = "es";
   return (
     <div id="servicios-page">
       <SEO title="Servicios" />
+      <ScrollArrow />
       <a className="academy-link hvr-radial-out" href="/academy">
         <span>¿QUERÉS CONOCER NUESTRA ACADEMY?</span>
       </a>
