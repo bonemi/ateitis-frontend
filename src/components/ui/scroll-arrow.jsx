@@ -4,6 +4,11 @@ import { FaArrowCircleUp } from "react-icons/fa";
 const ScrollArrow = () => {
   const [showScroll, setShowScroll] = useState(false);
 
+  const isBrowser = typeof window !== "undefined";
+  if (!isBrowser) {
+    return;
+  }
+
   const checkScrollTop = () => {
     if (!showScroll && window.pageYOffset > 700) {
       setShowScroll(true);
