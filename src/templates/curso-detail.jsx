@@ -23,7 +23,7 @@ import flagUsa from "../images/flag-usa.png";
 import menu from "../utils/menu";
 import { toTitleCase } from "../utils/string-utils";
 import translations from "../utils/translations";
-import ScrollArrow from "../components/ui/scroll-arrow";
+// import ScrollArrow from "../components/ui/scroll-arrow";
 
 export default function CursoDetail({ data, pageContext }) {
   const { slug, language, localizedSlug, acfCursos } = pageContext;
@@ -75,7 +75,7 @@ export default function CursoDetail({ data, pageContext }) {
   return (
     <div id="academy-page">
       <SEO title="Academy" />
-      <ScrollArrow />
+      {/* <ScrollArrow /> */}
       <a className="servicios-link hvr-radial-out" href={serviciosLink}>
         <span>{translations.knowOurServices[language]}</span>
       </a>
