@@ -74,6 +74,7 @@ module.exports = {
 
     `gatsby-plugin-sass`,
     "gatsby-plugin-use-query-params",
+    `gatsby-plugin-smoothscroll`,
 
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
