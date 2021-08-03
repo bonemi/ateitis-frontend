@@ -2,8 +2,8 @@ const translations = {
   addToCart: { es: "AÑADIR AL", en: "ADD TO" },
   price: { es: "Precio:", en: "Price:" },
   services: { es: "servicios", en: "services" },
-  clients: { es: "clientes", en: "clients" },
-  satisfiedClients: { es: "Clientes Satisfechos", en: "Satisfied Clients" },
+  clients: { es: "clientes", en: "customers" },
+  satisfiedClients: { es: "Clientes Satisfechos", en: "Satisfied Customers" },
   ourCertifications: { es: "Nuestras Certificaciones", en: "Our Certifications" },
 
   cart: {

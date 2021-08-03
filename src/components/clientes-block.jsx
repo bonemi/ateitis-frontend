@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { useStaticQuery, graphql } from "gatsby";
+import { graphql } from "gatsby";
 import { Col, Container, Row } from "react-bootstrap";
 import InfiniteScroller from "./infiniteScroller";
 import Titulo from "./titulo";
@@ -12,13 +12,13 @@ import translations from "../utils/translations";
 import { toTitleCase } from "../utils/string-utils";
 
 export default function ClientesBlock({ language, data }) {
-  const pQuery = useStaticQuery(pageQuery);
+  // const pQuery = useStaticQuery(pageQuery);
   const clientesSatisfechos = data.clientes.edges;
-  const clientesImg = pQuery.allWpPage.edges[0].node.acfClientes.imagen;
+  // const clientesImg = pQuery.allWpPage.edges[0].node.acfClientes.imagen;
 
   return (
     <Fragment>
-      <Container className="mb-4 mt-4">
+      <Container className="mt-4 mb-4">
         <Row>
           <Col>
             <Titulo
@@ -30,9 +30,9 @@ export default function ClientesBlock({ language, data }) {
         </Row>
       </Container>
 
-      <Container fluid className="mb-4 mt-4">
+      <Container fluid className="mt-4 mb-4">
         <Row>
-          <InfiniteScroller imagen={clientesImg}></InfiniteScroller>
+          <InfiniteScroller />
         </Row>
       </Container>
 

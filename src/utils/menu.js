@@ -26,7 +26,7 @@ export const menuServicios = {
     { label: "HOME", url: "/en" },
     { label: "ABOUT US", url: "/en/services#aboutus" },
     { label: "SERVICES", url: "/en/services#services" },
-    { label: "CLIENTS", url: "/en/services#clients" },
+    { label: "CUSTOMERS", url: "/en/services#clients" },
     { label: "CONTACT", url: "#contact" },
   ],
 };

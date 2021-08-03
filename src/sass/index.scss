@@ -1,5 +1,31 @@
 @import "_variables.scss";
 
+/* Slide clients banner at servicios pages */
+
+.container-slider {
+  overflow: hidden;
+}
+
+.sliding-background {
+  background: url(../images/clientes-slide.png) repeat-x;
+  height: 300px;
+  width: 10000px;
+  animation: slide 40s linear infinite;
+
+  @media screen and (max-width: $md) {
+    width: 5903px;
+  }
+}
+
+@keyframes slide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-5076px, 0, 0);
+  }
+}
+
 .languageSelector {
   color: white;
   font-weight: 400;

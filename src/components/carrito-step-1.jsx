@@ -47,6 +47,7 @@ export function CarritoStep1({
   }
 
   const products = cart.contents.nodes;
+  console.log(products);
   const gutter_s = 2;
   const gutter_m = 5;
 
@@ -77,6 +78,7 @@ export function CarritoStep1({
   //   if (loading) {
   //     return <LoadingComponentOverlay />;
   //   }
+  console.log(cart);
   return (
     <Fragment>
       {loading && <LoadingComponentOverlay />}
@@ -124,7 +126,7 @@ export function CarritoStep1({
 
             <Row className={`mb-${gutter_m}`}>
               <Col sm={12} md={12}>
-                <div className="carrito-listado-de-productos text-center">
+                <div className="text-center carrito-listado-de-productos">
                   {products.length === 0 ? (
                     <p>{translations.cart.emptyCart[language]}</p>
                   ) : (
