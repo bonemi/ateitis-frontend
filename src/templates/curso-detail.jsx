@@ -27,8 +27,8 @@ import ScrollArrow from "../components/ui/scroll-arrow";
 
 export default function CursoDetail({ data, pageContext }) {
   const { slug, language, localizedSlug, acfCursos } = pageContext;
-  console.log(pageContext);
-  console.log(data);
+  // console.log(pageContext);
+  // console.log(data);
   // console.log(language);
   const handleCloseCarrito = () => {
     setShowCarrito(undefined);
@@ -158,7 +158,7 @@ export default function CursoDetail({ data, pageContext }) {
             ></CursoDetailSection>
           </Col>
         </Row>
-        <Row className="text-center my-4">
+        <Row className="my-4 text-center">
           <Col className="d-none d-lg-flex"></Col>
           <Col>
             <AddToCartButton
@@ -179,7 +179,7 @@ export default function CursoDetail({ data, pageContext }) {
           />
         </Row>
       </Container>
-      <Container fluid className="seccion-contacto academy mt-4">
+      <Container fluid className="mt-4 seccion-contacto academy">
         <Row>
           <ContactoBlock language={language}></ContactoBlock>
         </Row>

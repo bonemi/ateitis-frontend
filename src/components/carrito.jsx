@@ -30,7 +30,7 @@ export default function Carrito({
   const monedaDefault = monedasData.wp.woocsDefaultCurrency;
 
   const { cart, setCart } = useContext(AppContext);
-  console.log(cart);
+  // console.log(cart);
   const { addToast, removeAllToasts } = useToasts();
 
   const [
@@ -56,13 +56,13 @@ export default function Carrito({
   const { loading, data, refetch } = useQuery(GET_CART, {
     notifyOnNetworkStatusChange: true,
     onCompleted: () => {
-      console.log("GET CART REFETCH FUNCTION START");
+      // console.log("GET CART REFETCH FUNCTION START");
       console.log(data);
       const updatedCart = data.cart;
       localStorage.setItem("woo-next-cart", JSON.stringify(updatedCart));
       setCart(updatedCart);
-      console.log(updatedCart);
-      console.log("Carrito Fetched");
+      // console.log(updatedCart);
+      // console.log("Carrito Fetched");
     },
     onError: error => {
       console.log(error);
@@ -75,7 +75,7 @@ export default function Carrito({
     { data: updateCartRes, loading: updateCartLoading, error: updateCardError },
   ] = useMutation(UPDATE_CART, {
     onCompleted: () => {
-      console.log("CART UPDATED");
+      // console.log("CART UPDATED");
       refetch();
     },
     onError: error => {
@@ -93,23 +93,23 @@ export default function Carrito({
       refetch();
     },
     onError: error => {
-      // console.log(error);
+      console.log(error);
     },
   });
 
   /* CHANGE CURRENCY */
   const [changeCurrency] = useMutation(SET_CURRENCY, {
     onCompleted: data => {
-      console.log("Se cambio la moneda a: ");
-      console.log(data.setCurrency.newCurrency);
+      // console.log("Se cambio la moneda a: ");
+      // console.log(data.setCurrency.newCurrency);
       console.log(data);
 
       // TODO: PLEASE PLEASE PLEASE FIND OUT WHY YOU NEED TO EXECUTE TWO TIMES GET_QUERY TO GET SUBTOTAL UPDATED
       setTimeout(() => {
-        console.log("refecth");
+        // console.log("refecth");
         refetch();
         setTimeout(() => {
-          console.log("refecth");
+          // console.log("refecth");
           refetch();
         }, 1000);
       }, 1000);

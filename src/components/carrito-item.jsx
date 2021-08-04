@@ -10,7 +10,7 @@ function CarritoItem({ item, updateCart, removeItemsFromCart, language }) {
   const { quantity, total, subtotal, key } = item;
   const { id, productId, name, description, price, image } = item.product;
   const [qty, setQty] = useState(quantity);
-  console.log(item);
+  // console.log(item);
 
   const title = item.product.acfCursos[language]["titulo" + toTitleCase(language)];
 

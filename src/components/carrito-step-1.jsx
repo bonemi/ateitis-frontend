@@ -47,7 +47,7 @@ export function CarritoStep1({
   }
 
   const products = cart.contents.nodes;
-  console.log(products);
+  // console.log(products);
   const gutter_s = 2;
   const gutter_m = 5;
 
@@ -78,7 +78,7 @@ export function CarritoStep1({
   //   if (loading) {
   //     return <LoadingComponentOverlay />;
   //   }
-  console.log(cart);
+  // console.log(cart);
   return (
     <Fragment>
       {loading && <LoadingComponentOverlay />}
