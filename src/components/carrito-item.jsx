@@ -2,12 +2,17 @@ import React, { Fragment, useRef, useState } from "react";
 import { Button, Col, Image, Row } from "react-bootstrap";
 import { v4 } from "uuid";
 import { convertHtmlToText } from "../utils/functions";
+import { toTitleCase } from "../utils/string-utils";
+import translations from "../utils/translations";
 let inputTimeOut = setTimeout(() => {}, 500);
 
-function CarritoItem({ item, updateCart, removeItemsFromCart }) {
+function CarritoItem({ item, updateCart, removeItemsFromCart, language }) {
   const { quantity, total, subtotal, key } = item;
   const { id, productId, name, description, price, image } = item.product;
   const [qty, setQty] = useState(quantity);
+  // console.log(item);
+
+  const title = item.product.acfCursos[language]["titulo" + toTitleCase(language)];
 
   // To make SetTimoutWork: https://github.com/facebook/react/issues/14010#issuecomment-433788147
   const qtyRef = useRef(qty);
@@ -36,7 +41,7 @@ function CarritoItem({ item, updateCart, removeItemsFromCart }) {
     setQty(qty + newQty);
 
     inputTimeOut = setTimeout(() => {
-      console.log("update: " + qtyRef.current);
+      // console.log("update: " + qtyRef.current);
       updateCart({
         variables: {
           input: {
@@ -60,36 +65,24 @@ function CarritoItem({ item, updateCart, removeItemsFromCart }) {
           <Image src={image.sourceUrl} fluid />
         </Col>
         <Col sm={12} md={6} className="descripcion">
-          <div className="item-title">{name}</div>
+          <div className="item-title">{title}</div>
           <div className="item-price">{formattedPrice}</div>
         </Col>
 
         <Col sm={12} md={3} className="subtotal">
           <Row>
             <Col className="botonera">
-              <Button
-                size="sm"
-                variant="outline-warning"
-                onClick={() => updateQuantity(-1)}
-              >
+              <Button size="sm" variant="outline-warning" onClick={() => updateQuantity(-1)}>
                 -
               </Button>
               <Button size="sm" variant="outline-warning" disabled>
                 {qty}
               </Button>
-              <Button
-                size="sm"
-                variant="outline-warning"
-                onClick={() => updateQuantity(1)}
-              >
+              <Button size="sm" variant="outline-warning" onClick={() => updateQuantity(1)}>
                 +
               </Button>
-              <Button
-                size="sm"
-                variant="outline-warning"
-                onClick={deleteItemFromCart}
-              >
-                Eliminar
+              <Button size="sm" variant="outline-warning" onClick={deleteItemFromCart}>
+                {translations.cart.delete[language]}
               </Button>
             </Col>
           </Row>

@@ -5,8 +5,9 @@ import { Col, Container, Row } from "react-bootstrap";
 import CursoCard from "./curso-card";
 import { Fragment } from "react";
 import Titulo from "./titulo";
+import translations from "../utils/translations";
 
-export default function CursosBlock() {
+export default function CursosBlock({ language }) {
   const data = useStaticQuery(pageQuery);
   const categorias = data.allWpProductCategory.edges;
   const sortedCategories = categorias.sort((a, b) =>
@@ -16,7 +17,11 @@ export default function CursosBlock() {
     <Fragment>
       <Row className="mb-4 mt-4 ">
         <Col>
-          <Titulo id="cursos" data="Cursos" showInicial={true}></Titulo>
+          <Titulo
+            id={translations.courses[language].toLowerCase()}
+            data={translations.courses[language]}
+            showInicial={true}
+          ></Titulo>
         </Col>
       </Row>
 
@@ -26,20 +31,19 @@ export default function CursosBlock() {
             <Row>
               <Col className="my-5 curso-selection-category">
                 <Img
-                  fluid={cat.node.image.localFile.childImageSharp.fluid}
+                  fluid={
+                    cat.node?.image?.localFile
+                      ? cat.node.image.localFile.childImageSharp.fluid
+                      : null
+                  }
                 ></Img>
-                <h2>{cat.node.name}</h2>
+                <h2>{cat.node.acfCategoria[language]}</h2>
               </Col>
             </Row>
             <Row className="px-0">
               {cat.node.products.nodes.map(prod => (
-                <Col
-                  key={prod.id}
-                  sm={12}
-                  lg={6}
-                  className="px-0 px-md-2 px-lg-4 my-4"
-                >
-                  <CursoCard curso={prod} key={prod.id}></CursoCard>
+                <Col key={prod.id} sm={12} lg={6} className="px-0 px-md-2 px-lg-4 my-4">
+                  <CursoCard language={language} curso={prod} key={prod.id}></CursoCard>
                 </Col>
               ))}
             </Row>
@@ -64,6 +68,8 @@ const pageQuery = graphql`
           name
           acfCategoria {
             orden
+            en
+            es
           }
           image {
             id
@@ -103,25 +109,56 @@ const pageQuery = graphql`
                 price
               }
               acfCursos {
-                duracion
-                fechaDeInicio
-                fechaHora
-                fieldGroupName
-                metodologia
-                modalidadDeClases
-                orientacion
-                precioFormasDePago
-                profesor
-                temario
-                fotoProfesor {
-                  id
-                  sourceUrl
-                  localFile {
+                es {
+                  duracionEs
+                  fechaDeInicioEs
+                  fechaHoraEs
+                  fieldGroupName
+                  metodologiaEs
+                  modalidadDeClasesEs
+                  orientacionEs
+                  precioFormasDePagoEs
+                  profesorEs
+                  temarioEs
+                  tituloEs
+                  slugEs
+                  fotoProfesorEs {
                     id
-                    childImageSharp {
+                    sourceUrl
+                    localFile {
                       id
-                      fluid {
-                        ...GatsbyImageSharpFluid_noBase64
+                      childImageSharp {
+                        id
+                        fluid {
+                          ...GatsbyImageSharpFluid_noBase64
+                        }
+                      }
+                    }
+                  }
+                }
+                en {
+                  duracionEn
+                  fechaDeInicioEn
+                  fechaHoraEn
+                  fieldGroupName
+                  metodologiaEn
+                  modalidadDeClasesEn
+                  orientacionEn
+                  precioFormasDePagoEn
+                  profesorEn
+                  temarioEn
+                  tituloEn
+                  slugEn
+                  fotoProfesorEn {
+                    id
+                    sourceUrl
+                    localFile {
+                      id
+                      childImageSharp {
+                        id
+                        fluid {
+                          ...GatsbyImageSharpFluid_noBase64
+                        }
                       }
                     }
                   }

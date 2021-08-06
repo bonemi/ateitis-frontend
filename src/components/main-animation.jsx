@@ -15,7 +15,7 @@ const StyledMainAnimation = styled.div`
 function MainAnimation() {
   return (
     // <StyledMainAnimation>
-    <object type="image/svg+xml" data={Animated} className="svg">
+    <object type="image/svg+xml" data={Animated} className="svg" alt="Intro main page welcome">
       svg-animation
     </object>
     // </StyledMainAnimation>

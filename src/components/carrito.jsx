@@ -17,6 +17,7 @@ import { AppContext } from "./context/AppContext";
 import LoadingComponentOverlay from "./loading-component-overlay";
 
 export default function Carrito({
+  language,
   show,
   handleCloseCarrito,
   cartStep,
@@ -29,6 +30,7 @@ export default function Carrito({
   const monedaDefault = monedasData.wp.woocsDefaultCurrency;
 
   const { cart, setCart } = useContext(AppContext);
+  // console.log(cart);
   const { addToast, removeAllToasts } = useToasts();
 
   const [
@@ -46,7 +48,7 @@ export default function Carrito({
   });
 
   useEffect(() => {
-    console.log("mount");
+    // console.log("mount");
     const currentCurrency = getCurrentCurrency();
   }, []);
 
@@ -54,11 +56,13 @@ export default function Carrito({
   const { loading, data, refetch } = useQuery(GET_CART, {
     notifyOnNetworkStatusChange: true,
     onCompleted: () => {
+      // console.log("GET CART REFETCH FUNCTION START");
+      console.log(data);
       const updatedCart = data.cart;
       localStorage.setItem("woo-next-cart", JSON.stringify(updatedCart));
       setCart(updatedCart);
-      console.log(updatedCart);
-      console.log("Carrito Fetched");
+      // console.log(updatedCart);
+      // console.log("Carrito Fetched");
     },
     onError: error => {
       console.log(error);
@@ -71,6 +75,7 @@ export default function Carrito({
     { data: updateCartRes, loading: updateCartLoading, error: updateCardError },
   ] = useMutation(UPDATE_CART, {
     onCompleted: () => {
+      // console.log("CART UPDATED");
       refetch();
     },
     onError: error => {
@@ -81,14 +86,10 @@ export default function Carrito({
   /* REMOVE ITEM FROM CART */
   const [
     removeItemsFromCart,
-    {
-      data: deleteFromCartRes,
-      loading: deletFromCartLoading,
-      error: deleteFromCartError,
-    },
+    { data: deleteFromCartRes, loading: deletFromCartLoading, error: deleteFromCartError },
   ] = useMutation(REMOVE_ITEMS_FROM_CART, {
     onCompleted: data => {
-      console.log(`Se elimino: `, data);
+      // console.log(`Se elimino: `, data);
       refetch();
     },
     onError: error => {
@@ -99,12 +100,19 @@ export default function Carrito({
   /* CHANGE CURRENCY */
   const [changeCurrency] = useMutation(SET_CURRENCY, {
     onCompleted: data => {
-      console.log("Se cambio la moneda a: ");
-      console.log(data.setCurrency.newCurrency);
+      // console.log("Se cambio la moneda a: ");
+      // console.log(data.setCurrency.newCurrency);
+      console.log(data);
+
+      // TODO: PLEASE PLEASE PLEASE FIND OUT WHY YOU NEED TO EXECUTE TWO TIMES GET_QUERY TO GET SUBTOTAL UPDATED
       setTimeout(() => {
-        console.log("refecth");
+        // console.log("refecth");
         refetch();
-      }, 100);
+        setTimeout(() => {
+          // console.log("refecth");
+          refetch();
+        }, 1000);
+      }, 1000);
     },
 
     onError: error => {
@@ -116,11 +124,7 @@ export default function Carrito({
 
   const [
     applyCoupon,
-    {
-      data: applyCouponRes,
-      loading: applyCouponLoading,
-      error: applyCouponError,
-    },
+    { data: applyCouponRes, loading: applyCouponLoading, error: applyCouponError },
   ] = useMutation(APPLY_COUPON_MUTATION, {
     onCompleted: data => {
       //   console.log(`Carrito Luego del cupon: : `, data.applyCoupon.cart);
@@ -136,11 +140,7 @@ export default function Carrito({
   /* REMOVE ALL COUPONS */
   const [
     removeAllCoupons,
-    {
-      data: removeCouponRes,
-      loading: removeCouponLoading,
-      error: removeCouponError,
-    },
+    { data: removeCouponRes, loading: removeCouponLoading, error: removeCouponError },
   ] = useMutation(REMOVE_COUPONS_MUTATION, {
     onCompleted: data => {
       setCart(data.removeCoupons.cart);
@@ -168,6 +168,7 @@ export default function Carrito({
           removeItemsFromCart={removeItemsFromCart}
           changeCurrency={changeCurrency}
           loading={updateCartLoading || loading}
+          language={language}
         ></CarritoStep2>
       </Modal>
     );
@@ -188,12 +189,8 @@ export default function Carrito({
           updateCart={updateCart}
           removeItemsFromCart={removeItemsFromCart}
           changeCurrency={changeCurrency}
-          loading={
-            updateCartLoading ||
-            loading ||
-            removeCouponLoading ||
-            applyCouponLoading
-          }
+          loading={updateCartLoading || loading || removeCouponLoading || applyCouponLoading}
+          language={language}
         ></CarritoStep1>
       </Modal>
     );

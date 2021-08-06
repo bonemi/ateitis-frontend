@@ -9,6 +9,7 @@
  add_action('init', function () {
      register_post_type('nosotrosListado', [
       'show_ui' => true,
+      'public' => true,
       'labels'  => [
           'menu_name' => __('Nosotros Listado', 'nosotros-listado'),//@see https://developer.wordpress.org/themes/functionality/internationalization/
       ],
@@ -25,6 +26,7 @@
  add_action('init', function () {
      register_post_type('serviciosListados', [
       'show_ui' => true,
+      'public' => true,
       'labels'  => [
           'menu_name' => __('Servicios Listados', 'servicios-listados'),//@see https://developer.wordpress.org/themes/functionality/internationalization/
       ],
@@ -41,6 +43,7 @@
  add_action('init', function () {
      register_post_type('clientesSatisfechos', [
       'show_ui' => true,
+      'public' => true,
       'labels'  => [
           'menu_name' => __('Clientes Satisfechos', 'clientes-satisfechos'),//@see https://developer.wordpress.org/themes/functionality/internationalization/
       ],
@@ -57,6 +60,7 @@
  add_action('init', function () {
      register_post_type('redesSociales', [
       'show_ui' => true,
+      'public' => true,
       'labels'  => [
           'menu_name' => __('Redes Sociales', 'redes-sociales'),//@see https://developer.wordpress.org/themes/functionality/internationalization/
       ],
@@ -73,6 +77,7 @@
  add_action('init', function () {
      register_post_type('formularioContacto', [
       'show_ui' => true,
+      'public' => true,
       'labels'  => [
           'menu_name' => __('Formulario Contacto', 'formulario-contacto'),//@see https://developer.wordpress.org/themes/functionality/internationalization/
       ],

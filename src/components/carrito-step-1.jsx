@@ -14,6 +14,7 @@ import Select from "react-select";
 import { v4 } from "uuid";
 import cartImg from "../images/cart.png";
 import metodosDePagoImg from "../images/metodos-de-pago.png";
+import translations from "../utils/translations";
 import CarritoItem from "./carrito-item";
 import LoadingComponentOverlay from "./loading-component-overlay";
 
@@ -30,6 +31,7 @@ export function CarritoStep1({
   changeCurrency,
   moneda,
   setMoneda,
+  language,
 }) {
   const monedasOptions = monedas.map(x => {
     return {
@@ -41,10 +43,11 @@ export function CarritoStep1({
   const [appliedCouponCode, setAppliedCouponCode] = useState("");
 
   if (!cart || !cart.contents) {
-    return <div className="empty-cart">El carrito está vacío.</div>;
+    return <div className="empty-cart">{translations.cart.emptyCart[language]}</div>;
   }
 
   const products = cart.contents.nodes;
+  // console.log(products);
   const gutter_s = 2;
   const gutter_m = 5;
 
@@ -70,28 +73,26 @@ export function CarritoStep1({
         },
       },
     });
-    console.log("Cupon aplicado: " + appliedCouponCode);
+    // console.log("Cupon aplicado: " + appliedCouponCode);
   }
   //   if (loading) {
   //     return <LoadingComponentOverlay />;
   //   }
+  // console.log(cart);
   return (
     <Fragment>
       {loading && <LoadingComponentOverlay />}
-      <Modal.Header
-        className={`mb-${gutter_s} carrito-modal-header`}
-        closeButton
-      >
+      <Modal.Header className={`mb-${gutter_s} carrito-modal-header`} closeButton>
         <Modal.Title>
-          CARRITO DE COMPRAS <img src={cartImg}></img>
+          {translations.cart.shoppingCart[language]} <img src={cartImg}></img>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="carrito-modal-body">
         <Container>
           <Row className={`mb-${gutter_m}`}>
             <Col>
-              <div className="seleccion-moneda">
-                <div className="label">SELECCIONA TU MONEDA</div>
+              <div className="seleccion-moneda text-uppercase">
+                <div className="label">{translations.cart.selectCoin[language]}</div>
                 <Select
                   className="flex-select"
                   value={moneda}
@@ -114,20 +115,20 @@ export function CarritoStep1({
           <div className="primera-seccion">
             {/* {loading && <LoadingComponentOverlay />} */}
             <Row className={`mb-${gutter_s}`} style={{ color: "#55a0d5" }}>
-              <Col sm={12} md={9} className="text-center d-none d-md-block">
-                <h5>PRODUCTO</h5>
+              <Col sm={12} md={9} className="text-center d-none d-md-block text-uppercase">
+                <h5>{translations.cart.product[language]}</h5>
               </Col>
 
-              <Col sm={12} md={3} className="text-center d-none d-md-block">
-                <h5>SUBTOTAL</h5>
+              <Col sm={12} md={3} className="text-center d-none d-md-block text-uppercase">
+                <h5>{translations.cart.subtotal[language]}</h5>
               </Col>
             </Row>
 
             <Row className={`mb-${gutter_m}`}>
               <Col sm={12} md={12}>
-                <div className="carrito-listado-de-productos text-center">
+                <div className="text-center carrito-listado-de-productos">
                   {products.length === 0 ? (
-                    <p>El carrito esta vacío</p>
+                    <p>{translations.cart.emptyCart[language]}</p>
                   ) : (
                     products.map(item => (
                       <CarritoItem
@@ -135,6 +136,7 @@ export function CarritoStep1({
                         item={item}
                         updateCart={updateCart}
                         removeItemsFromCart={removeItemsFromCart}
+                        language={language}
                       ></CarritoItem>
                     ))
                   )}
@@ -145,8 +147,8 @@ export function CarritoStep1({
           <div className="segunda-seccion">
             <div className="subtotal">
               <Row className={`my-${gutter_s}`}>
-                <Col xs={12} md={8} className="text-center text-md-left">
-                  <h5>SUBTOTAL:</h5>
+                <Col xs={12} md={8} className="text-center text-md-left text-uppercase">
+                  <h5>{translations.cart.subtotal[language]}:</h5>
                 </Col>
                 <Col xs={12} md={4} className="text-center text-md-right">
                   <h5> {cart.subtotal}</h5>
@@ -197,7 +199,7 @@ export function CarritoStep1({
 
             <Row className={`my-${gutter_s}`}>
               <Col sm={12} md={8} className="text-center text-md-left d-flex ">
-                <span className="mr-4">¿Tenés un cupón de descuento?</span>
+                <span className="mr-4">{translations.cart.haveCoupon[language]}</span>
                 {/* {cart.appliedCoupons.nodes.length > 0 && ( */}
 
                 {/* )} */}
@@ -217,7 +219,7 @@ export function CarritoStep1({
                       variant="outline-secondary"
                       onClick={removeAndApplyCoupon}
                     >
-                      Aplicar
+                      {translations.cart.apply[language]}
                     </Button>
                   </InputGroup.Append>
                 </InputGroup>
@@ -238,24 +240,26 @@ export function CarritoStep1({
           </div>
           <div className="cuarta-seccion">
             <Row className={`mb-${gutter_m}`}>
-              <Col sm={0} md={2}></Col>
-              <Col sm={12} md={4} className="mb-3">
+              <Col sm={0} md={1}></Col>
+              <Col sm={12} md={5} className="mb-3 text-uppercase">
                 <Button block onClick={() => setCartStep(2)} size="lg">
-                  INICIAR COMPRA
+                  {translations.cart.purchase[language].toUpperCase()}
                 </Button>
               </Col>
-              <Col sm={12} md={4}>
+              <Col sm={12} md={5}>
                 <Button
                   block
                   variant="light"
                   size="lg"
-                  href="/academy#cursos"
+                  href={`${
+                    language === "es" ? "" : "/" + language
+                  }/academy#${translations.courses[language].toLowerCase()}`}
                   className="w-md-100"
                 >
-                  VER MAS CURSOS
+                  {translations.cart.seeMoreCourses[language].toUpperCase()}
                 </Button>
               </Col>
-              <Col sm={0} md={2}></Col>
+              <Col sm={0} md={1}></Col>
             </Row>
             <Row className={`mb-${gutter_s}`} style={{ textAlign: "center" }}>
               <Col sm={12} md={12}>

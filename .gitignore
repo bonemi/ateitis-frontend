@@ -57,6 +57,7 @@ typings/
 # gatsby files
 .cache/
 public
+public/
 
 # Mac files
 .DS_Store
@@ -71,3 +72,6 @@ yarn-error.log
 # dotenv environment variable files
 .env.development
 .env.production
+src/wordpress/polylang-pro.zip
+src/wordpress/polylang-wc.zip
+src/wordpress/wp-graphql-polylang-0.5.0.zip

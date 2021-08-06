@@ -5,10 +5,10 @@ import Titulo from "./titulo";
 import Parrafo from "./parrafo";
 import { Col, Container, Row } from "react-bootstrap";
 import Certificaciones from "./certificaciones";
+import translations from "../utils/translations";
 
-export default function ServiciosBlock() {
-  const data = useStaticQuery(pageQuery);
-  const contenido = data.allWpPage.edges[0].node;
+export default function ServiciosBlock({ data, language }) {
+  const contenido = data?.serviciosPage?.edges[0]?.node;
   const certificacionesImg = data.allWpServiciosItem.edges.sort((a, b) =>
     a.node.acfServiciosListado.orden > b.node.acfServiciosListado.orden ? 1 : -1
   );
@@ -16,11 +16,14 @@ export default function ServiciosBlock() {
     <Fragment>
       <Row className="mb-4 mt-4">
         <Col>
-          <Titulo id="servicios" data={contenido.title}></Titulo>
+          <Titulo
+            id={translations.services[language]}
+            data={translations.services[language]}
+          ></Titulo>
         </Col>
       </Row>
 
-      {contenido.acfServicios.descripcion && (
+      {contenido?.acfServicios.descripcion && (
         <Row className="mb-4 mt-4">
           <Col>
             <Parrafo data={contenido.acfServicios.descripcion}></Parrafo>
@@ -42,7 +45,7 @@ export default function ServiciosBlock() {
         <Col>
           <Titulo
             id="certificaciones"
-            data="Nuestras certificaciones"
+            data={translations.ourCertifications[language]}
             showInicial={false}
           ></Titulo>
         </Col>
@@ -55,47 +58,3 @@ export default function ServiciosBlock() {
     </Fragment>
   );
 }
-
-const pageQuery = graphql`
-  query ServiciosBlockQuery {
-    allWpServiciosItem {
-      edges {
-        node {
-          id
-          title
-          acfServiciosListado {
-            color
-            subTitulo
-            orden
-            texto
-            icono {
-              sourceUrl
-              localFile {
-                id
-                childImageSharp {
-                  id
-                  fixed(width: 400) {
-                    # Choose either the fragment including a small base64ed image, a traced placeholder SVG, or one without.
-                    ...GatsbyImageSharpFixed_noBase64
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    allWpPage(filter: { slug: { glob: "*servicios*" } }) {
-      edges {
-        node {
-          title
-          slug
-          acfServicios {
-            descripcion
-            fieldGroupName
-          }
-        }
-      }
-    }
-  }
-`;

@@ -10,6 +10,15 @@ module.exports = {
     author: `@ajboni @emilanoglucero`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-i18n`,
+      options: {
+        langKeyDefault: "es",
+        langKeyForNull: "es",
+        prefixDefault: false,
+        useLangKeyLayout: false,
+      },
+    },
     /*
      * Gatsby's data processing layer begins with “source”
      * plugins. Here the site sources its data from WordPress.
@@ -58,13 +67,14 @@ module.exports = {
     {
       resolve: "gatsby-plugin-google-tagmanager",
       options: {
-        id: "GTM-KBNPL45",
+        id: "G-72S5LZ6XR7",
         includeInDevelopment: false,
       },
     },
 
     `gatsby-plugin-sass`,
     "gatsby-plugin-use-query-params",
+    `gatsby-plugin-smoothscroll`,
 
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
