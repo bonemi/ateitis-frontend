@@ -112,11 +112,14 @@ add_action('graphql_register_types', function () {
             // Do any logic here to sanitize the input, check user capabilities, etc
             
             $currentCurrency = "ARS";
-            if (class_exists('WOOMULTI_CURRENCY_F_Data')) {
-                $currency_plugin = new WOOMULTI_CURRENCY_F_Data();
-                $currency_plugin->set_current_currency($input['newCurrency'], true);
-                $currentCurrency  = $currency_plugin->get_current_currency();
-            }
+            // if (class_exists('WOOMULTI_CURRENCY_F_Data')) {
+            $currency_plugin          = WOOMULTI_CURRENCY_F_Data::get_ins();
+            // $current_currency = $setting->get_current_currency();
+                
+            // $currency_plugin = new WOOMULTI_CURRENCY_F_Data();
+            $currency_plugin->set_current_currency($input['newCurrency'], true);
+            $currentCurrency  = $currency_plugin->get_current_currency();
+            // }
         
         
             return [

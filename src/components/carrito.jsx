@@ -111,8 +111,8 @@ export default function Carrito({
         setTimeout(() => {
           // console.log("refecth");
           refetch();
-        }, 1000);
-      }, 1000);
+        }, 2000);
+      }, 1500);
     },
 
     onError: error => {

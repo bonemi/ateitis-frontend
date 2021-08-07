@@ -53,7 +53,7 @@
     "scripts": {
         "build": "gatsby build",
         "build_wp": "rm -f ateitis-plugin.zip && zip -rj ateitis-plugin.zip ./src/wordpress/ateitis-plugin",
-        "develop": "GATSBY_CONCURRENT_DOWNLOAD=1 HTTPS=true SSL_CRT_FILE=localhost.pem SSL_KEY_FILE=localhost-key.pem gatsby develop",
+        "develop": "GATSBY_CONCURRENT_DOWNLOAD=1 HTTPS=true SSL_CRT_FILE=localhost.pem SSL_KEY_FILE=localhost-key.pem gatsby develop --https",
         "develop-full": "GATSBY_CONCURRENT_DOWNLOAD=20 gatsby develop --https",
         "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
         "start": "npm run develop",
