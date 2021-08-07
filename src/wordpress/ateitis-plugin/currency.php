@@ -44,7 +44,7 @@ add_action('graphql_register_types', function () {
                 'custom' => [
                     'type' => 'String',
                     'description' => __('Custom Symbol')
-                ],c
+                ],
         ]
     ]);
 
