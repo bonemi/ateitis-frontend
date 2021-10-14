@@ -2,7 +2,7 @@
 /*
 Plugin Name: Ateitis Plugin
 Description: Site specific code changes for ateitiscorp.com
-Version: 0.3
+Version: 0.4
 */
 /* Start Adding Functions Below this Line */
 
