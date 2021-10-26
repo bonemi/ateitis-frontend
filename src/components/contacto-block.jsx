@@ -90,7 +90,7 @@ export default function ContactoBlock({ language, action = "" }) {
                 <Form.Control
                   required
                   type="tel"
-                  placeholder="Whatsapp*"
+                  placeholder="tel*"
                   value={whatsappValue}
                   onChange={event => {
                     setWhatsappValue(event.target.value);
