@@ -53,7 +53,8 @@ export default function CursoCard({ curso, language }) {
 
   if (language === "en")
     fechaDeInicioFormatted = dayjs(fechaDeInicio).format("[Starts] MMMM, DD [of] YYYY");
-
+  console.log(fechaDeInicioFormatted);
+  
   const fotoProfesor = curso.acfCursos[language]["fotoProfesor" + toTitleCase(language)]
     ? curso.acfCursos[language]["fotoProfesor" + toTitleCase(language)].localFile
         .childImageSharp.fluid
