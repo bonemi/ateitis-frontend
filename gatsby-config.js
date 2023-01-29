@@ -25,7 +25,7 @@ module.exports = {
      */
     // highlight-start
     {
-      resolve: `gatsby-source-wordpress-experimental`,
+      resolve: `gatsby-source-wordpress`,
       options: {
         /*
          * The full URL of the WordPress site's GraphQL API.
