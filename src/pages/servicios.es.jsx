@@ -17,7 +17,7 @@ export default function ServiciosPage({ data, location }) {
   const language = "es";
   return (
     <div id="servicios-page">
-      <SEO title="Servicios" />
+      <SEO title="servicios-de-seguridad-informatica-ciberseguridad" />
       <ScrollArrow />
       <a className="academy-link hvr-radial-out" href="/academy">
         <span>¿QUERÉS CONOCER NUESTRA ACADEMY?</span>
