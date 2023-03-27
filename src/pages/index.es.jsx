@@ -13,7 +13,7 @@ export default function IndexPage({ data }) {
   // console.log(data);
   /* Cargar los menues de wordpress, via grapqhl page query */
   const serviciosLink = data.menu.edges[0].node.menuItems.nodes.find(x =>
-    x.url.includes("servicios-de-seguridad-informatica-ciberseguridad")
+    x.url.includes("servicios")
   );
   const academyLink = data.menu.edges[0].node.menuItems.nodes.find(x =>
     x.url.includes("academy")
