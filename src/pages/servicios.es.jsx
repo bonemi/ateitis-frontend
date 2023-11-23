@@ -18,8 +18,8 @@ export default function ServiciosPage({ data, location }) {
   const language = "es";
  
   return (
-    <div>
-      <Helmet>
+    <div id="servicios-page">
+       <Helmet>
         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11421382917"></script>
         <script>
           {`
@@ -30,9 +30,6 @@ export default function ServiciosPage({ data, location }) {
           `}
         </script>
       </Helmet>
-      {/* ...resto de tu componente */}
-    </div>
-    <div id="servicios-page">
       <SEO title="Servicios" />
       <ScrollArrow />
       <a className="academy-link hvr-radial-out" href="/academy">
