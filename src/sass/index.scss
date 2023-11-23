@@ -8,8 +8,9 @@
 
 .sliding-background {
   background: url(../images/clientes-slide.png) repeat-x;
-  height: 300px;
+  height: 100px;
   width: 10000px;
+  background-size:contain;
   animation: slide 40s linear infinite;
 
   @media screen and (max-width: $md) {
