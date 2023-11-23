@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import NavbarMenu from "../components/navbar";
 import logo from "../images/logo-ateitis.png";
 import NosotrosBlock from "../components/nosotros-block";
@@ -17,6 +18,20 @@ export default function ServiciosPage({ data, location }) {
   const language = "es";
  
   return (
+    <div>
+      <Helmet>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11421382917"></script>
+        <script>
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-11421382917');
+          `}
+        </script>
+      </Helmet>
+      {/* ...resto de tu componente */}
+    </div>
     <div id="servicios-page">
       <SEO title="Servicios" />
       <ScrollArrow />
