@@ -16,6 +16,15 @@ import ScrollArrow from "../components/ui/scroll-arrow";
 export default function ServiciosPage({ data, location }) {
   const language = "es";
   return (
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11421382917"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-11421382917');
+</script>
     <div id="servicios-page">
       <SEO title="Servicios" />
       <ScrollArrow />
