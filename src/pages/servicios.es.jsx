@@ -15,29 +15,7 @@ import ScrollArrow from "../components/ui/scroll-arrow";
 
 export default function ServiciosPage({ data, location }) {
   const language = "es";
-  useEffect(() => {
-    // Crear el script gtag.js
-    const script = document.createElement('script');
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=AW-11421382917';
-    script.async = true;
-    document.body.appendChild(script);
-    // Crear el script para configurar gtag
-    const scriptConfig = document.createElement('script');
-    scriptConfig.innerHTML = `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-11421382917');
-    `;
-    document.body.appendChild(scriptConfig);
-
-    // Limpiar al desmontar el componente
-    return () => {
-      document.body.removeChild(script);
-      document.body.removeChild(scriptConfig);
-    };
-  }, []);
-  
+ 
   return (
     <div id="servicios-page">
       <SEO title="Servicios" />
